@@ -2,23 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateUserInput {
+	email: String!
+	password: String!
+	username: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
+type Mutation {
+	createUser(data: CreateUserInput!): Boolean!
+}
+
 type Query {
-  findAllUsers: [UserModel!]!
+	findAllUsers: [UserModel!]!
 }
 
 type UserModel {
-  avatar: String
-  bio: String
-  createdAt: DateTime!
-  displayName: String!
-  email: String!
-  id: ID!
-  password: String!
-  updatedAt: DateTime!
-  username: String!
+	avatar: String
+	bio: String
+	createdAt: DateTime!
+	displayName: String!
+	email: String!
+	id: ID!
+	password: String!
+	updatedAt: DateTime!
+	username: String!
 }
