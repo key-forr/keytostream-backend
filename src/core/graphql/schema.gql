@@ -3,9 +3,9 @@
 # ------------------------------------------------------
 
 input CreateUserInput {
-	email: String!
-	password: String!
-	username: String!
+  email: String!
+  password: String!
+  username: String!
 }
 
 """
@@ -13,22 +13,29 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input LoginInput {
+  login: String!
+  password: String!
+}
+
 type Mutation {
-	createUser(data: CreateUserInput!): Boolean!
+  createUser(data: CreateUserInput!): Boolean!
+  loginUser(data: LoginInput!): UserModel!
+  logoutUser: Boolean!
 }
 
 type Query {
-	findAllUsers: [UserModel!]!
+  findAllUsers: [UserModel!]!
 }
 
 type UserModel {
-	avatar: String
-	bio: String
-	createdAt: DateTime!
-	displayName: String!
-	email: String!
-	id: ID!
-	password: String!
-	updatedAt: DateTime!
-	username: String!
+  avatar: String
+  bio: String
+  createdAt: DateTime!
+  displayName: String!
+  email: String!
+  id: ID!
+  password: String!
+  updatedAt: DateTime!
+  username: String!
 }

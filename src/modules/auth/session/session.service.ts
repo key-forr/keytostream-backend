@@ -4,6 +4,7 @@ import {
 	NotFoundException,
 	UnauthorizedException
 } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { verify } from 'argon2'
 import type { Request } from 'express'
 
@@ -13,7 +14,10 @@ import { LoginInput } from './inputs/login.input'
 
 @Injectable()
 export class SessionService {
-	public constructor(private readonly prismaService: PrismaService) {}
+	public constructor(
+		private readonly prismaService: PrismaService,
+		private readonly configService: ConfigService
+	) {}
 
 	public async login(req: Request, input: LoginInput) {
 		const { login, password } = input
@@ -50,10 +54,28 @@ export class SessionService {
 					)
 				}
 
-				resolve({ user })
+				resolve(user)
 			})
 		})
 	}
 
-	public async logout() {}
+	public async logout(req: Request) {
+		return new Promise((resolve, reject) => {
+			req.session.destroy(err => {
+				if (err) {
+					return reject(
+						new InternalServerErrorException(
+							'Не вдалось завершити сесію'
+						)
+					)
+				}
+
+				req.res?.clearCookie(
+					this.configService.getOrThrow<string>('SESSION_NAME')
+				)
+
+				resolve(true)
+			})
+		})
+	}
 }
