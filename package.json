@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"@apollo/server": "^4.11.3",
+		"@nestjs-modules/mailer": "^2.0.2",
 		"@nestjs/apollo": "^13.0.2",
 		"@nestjs/common": "^11.0.1",
 		"@nestjs/config": "^4.0.0",
@@ -62,6 +63,7 @@
 		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.7",
 		"@types/supertest": "^6.0.2",
+		"@types/uuid": "^10.0.0",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-prettier": "^5.2.2",
