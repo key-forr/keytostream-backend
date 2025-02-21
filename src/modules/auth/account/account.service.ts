@@ -1,10 +1,17 @@
-import { ConflictException, Injectable } from '@nestjs/common'
-import { hash } from 'argon2'
+import {
+	ConflictException,
+	Injectable,
+	UnauthorizedException
+} from '@nestjs/common'
+import { hash, verify } from 'argon2'
 
+import type { User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 
 import { VerificationService } from '../verification/verification.service'
 
+import { ChangeEmailInput } from './inputs/change-email.input'
+import { ChangePasswordInput } from './inputs/change-password.input'
 import { CreateUserInput } from './inputs/create-user.input'
 
 @Injectable()
@@ -57,6 +64,42 @@ export class AccountService {
 		})
 
 		await this.verificationService.sendVerificationToken(user)
+
+		return true
+	}
+
+	public async changeEmail(user: User, input: ChangeEmailInput) {
+		const { email } = input
+
+		await this.prismaService.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				email
+			}
+		})
+
+		return true
+	}
+
+	public async changePassword(user: User, input: ChangePasswordInput) {
+		const { oldPassword, newPassword } = input
+
+		const isValidPassword = await verify(user.password, oldPassword)
+
+		if (!isValidPassword) {
+			throw new UnauthorizedException('Не вірний старий пароль')
+		}
+
+		await this.prismaService.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				password: await hash(newPassword)
+			}
+		})
 
 		return true
 	}
