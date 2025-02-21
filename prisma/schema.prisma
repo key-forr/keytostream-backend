@@ -21,7 +21,11 @@ model User {
   bio    String?
 
   isVerified Boolean @default(false) @map("is_verified")
+  
   isEmailVerified Boolean @default(false) @map("is_email_verified")
+  isTotpEnabled Boolean @default(false) @map("is_totp_enabled")
+  totpSecret String? @map("totp_secret")
+
   
   tokens Token[]
 
