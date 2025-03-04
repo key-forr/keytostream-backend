@@ -16,6 +16,12 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
+input ChangeProfileInfoInput {
+  bio: String!
+  displayName: String!
+  username: String!
+}
+
 input CreateUserInput {
   email: String!
   password: String!
@@ -60,6 +66,8 @@ input LoginInput {
 type Mutation {
   changeEmail(data: ChangeEmailInput!): Boolean!
   changePassword(data: ChangePasswordInput!): Boolean!
+  changeProfileAvatar(avatar: Upload!): Boolean!
+  changeProfileInfo(data: ChangeProfileInfoInput!): Boolean!
   clearSessionCookie: Boolean!
   createUser(data: CreateUserInput!): Boolean!
   deactivateAccount(data: DeactivateAccountInput!): AuthModel!
@@ -68,6 +76,7 @@ type Mutation {
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
   newPassword(data: NewPasswordInput!): Boolean!
+  removeProfileAvatar: Boolean!
   removeSession(id: String!): Boolean!
   resetPassword(data: ResetPasswordInput!): Boolean!
   verifyAccount(data: VerificationInput!): UserModel!
@@ -107,6 +116,9 @@ type TotpModel {
   qrcodeUrl: String!
   secret: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type UserModel {
   avatar: String
