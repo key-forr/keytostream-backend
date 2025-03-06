@@ -21,16 +21,17 @@ model User {
   bio    String?
 
   isVerified Boolean @default(false) @map("is_verified")
-  
-  isEmailVerified Boolean @default(false) @map("is_email_verified")
-  isTotpEnabled Boolean @default(false) @map("is_totp_enabled")
-  totpSecret String? @map("totp_secret")
 
-  isDeactivated Boolean @default(false) @map("is_deactivated")
+  isEmailVerified Boolean @default(false) @map("is_email_verified")
+  isTotpEnabled   Boolean @default(false) @map("is_totp_enabled")
+  totpSecret      String? @map("totp_secret")
+
+  isDeactivated Boolean   @default(false) @map("is_deactivated")
   deactivatedAt DateTime? @map("deactivated_at")
-  
-  tokens Token[]
+
+  tokens      Token[]
   socialLinks SocialLink[]
+  stream      Stream?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -41,26 +42,47 @@ model User {
 model SocialLink {
   id String @id @default(uuid())
 
-  title String
-  url String
+  title    String
+  url      String
   position Int
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String? @map("user_id")
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?  @map("user_id")
 
   @@map("social_links")
+}
+
+model Stream {
+  id String @id @default(uuid())
+
+  title        String
+  thumbnailUrl String? @map("thumbnail_url")
+
+  ingressId String? @unique @map("ingress_id")
+  serverUrl String? @map("server_url")
+  streamKey String? @map("stream_key")
+
+  isLive Boolean @default(false) @map("is_live")
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String? @unique @map("user_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("streams")
 }
 
 model Token {
   id String @id @default(uuid())
 
-  token String @unique
-  type TokenType
-  expiresIn DateTime @map("expires_in")
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
 
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String? @map("user_id")
 
   createdAt DateTime @default(now()) @map("created_at")
