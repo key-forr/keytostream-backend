@@ -154,6 +154,7 @@ exports.Prisma.StreamScalarFieldEnum = {
   streamKey: 'streamKey',
   isLive: 'isLive',
   userId: 'userId',
+  categoryId: 'categoryId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
