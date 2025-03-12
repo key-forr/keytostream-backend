@@ -34,6 +34,9 @@ model User {
   stream       Stream?
   chatMessages ChatMessage[]
 
+  followers  Follow[] @relation(name: "followers")
+  followings Follow[] @relation(name: "followings")
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -116,6 +119,24 @@ model Category {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("categories")
+}
+
+model Follow {
+  id String @id @default(uuid())
+
+  follower   User   @relation(name: "followers", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId String @map("follower_id")
+
+  following   User   @relation(name: "followings", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String @map("following_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("follows")
 }
 
 model Token {
