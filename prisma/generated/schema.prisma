@@ -75,6 +75,20 @@ model Stream {
   @@map("streams")
 }
 
+model Category {
+  id String @id @default(uuid())
+
+  title        String
+  slug         String  @unique
+  description  String?
+  thumbnailUrl String  @map("thumbnail_url")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("categories")
+}
+
 model Token {
   id String @id @default(uuid())
 
