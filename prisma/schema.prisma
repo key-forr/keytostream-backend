@@ -194,6 +194,7 @@ enum TokenType {
   EMAIL_VERIFY
   PASSWORD_RESET
   DEACTIVATE_ACCOUNT
+  TELEGRAM_AUTH
 
   @@map("token_types")
 }

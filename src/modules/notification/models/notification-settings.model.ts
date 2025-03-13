@@ -1,0 +1,33 @@
+import { Field, ObjectType } from '@nestjs/graphql'
+
+import { UserModel } from '@/src/modules/auth/account/models/user.model'
+
+@ObjectType()
+export class NotificationSettingsModel {
+	@Field(() => String)
+	public id: string
+
+	@Field(() => Boolean)
+	public emailNotifications: boolean
+
+	@Field(() => Boolean)
+	public telegramNotifications: boolean
+
+	@Field(() => UserModel)
+	public user: UserModel
+
+	@Field(() => Date)
+	public createdAt: Date
+
+	@Field(() => Date)
+	public updatedAt: Date
+}
+
+@ObjectType()
+export class ChangeNotificationsSettingsResponse {
+	@Field(() => NotificationSettingsModel)
+	public notificationSettings: NotificationSettingsModel
+
+	@Field(() => String, { nullable: true })
+	public telegramAuthToken?: string
+}

@@ -29,6 +29,9 @@ export class UserModel implements User {
 	@Field(() => String, { nullable: true })
 	public bio: string
 
+	@Field(() => String, { nullable: true })
+	public telegramId: string
+
 	@Field(() => Boolean)
 	public isVerified: boolean
 
