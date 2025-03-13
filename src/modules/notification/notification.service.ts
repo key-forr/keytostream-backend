@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { TokenType, type User } from '@/prisma/generated'
+import { NotificationType, TokenType, type User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { generateToken } from '@/src/shared/utils/generate-token.util'
 
@@ -42,6 +42,42 @@ export class NotificationService {
 		})
 
 		return notifications
+	}
+
+	public async createStreamStart(userId: string, channel: User) {
+		const notification = await this.prismaService.notification.create({
+			data: {
+				message: `<b className='font-medium'>Не Пропустіть!</b>
+				<p>Приєднуйтесь до стріму на каналі <a href='/${channel.username}' 
+				className='font-semibold'>${channel.displayName} </a>.</p>`,
+				type: NotificationType.STREAM_START,
+				user: {
+					connect: {
+						id: userId
+					}
+				}
+			}
+		})
+
+		return notification
+	}
+
+	public async createNewFollowing(userId: string, follower: User) {
+		const notification = await this.prismaService.notification.create({
+			data: {
+				message: `<b className='font-medium'>У вас новий підписник!</b>
+				<p>Це користувач <a href='/${follower.username}'
+				className='font-semibold'> ${follower.displayName} </a>.</p>`,
+				type: NotificationType.NEW_FOLLOWER,
+				user: {
+					connect: {
+						id: userId
+					}
+				}
+			}
+		})
+
+		return notification
 	}
 
 	public async changeSettings(
