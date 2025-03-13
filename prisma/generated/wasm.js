@@ -125,6 +125,7 @@ exports.Prisma.UserScalarFieldEnum = {
   displayName: 'displayName',
   avatar: 'avatar',
   bio: 'bio',
+  telegramId: 'telegramId',
   isVerified: 'isVerified',
   isEmailVerified: 'isEmailVerified',
   isTotpEnabled: 'isTotpEnabled',
@@ -189,6 +190,25 @@ exports.Prisma.FollowScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  type: 'type',
+  isRead: 'isRead',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationSettingsScalarFieldEnum = {
+  id: 'id',
+  siteNotifications: 'siteNotifications',
+  telegramNotifications: 'telegramNotifications',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TokenScalarFieldEnum = {
   id: 'id',
   token: 'token',
@@ -213,6 +233,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.NotificationType = exports.$Enums.NotificationType = {
+  STREAM_START: 'STREAM_START',
+  NEW_FOLLOWER: 'NEW_FOLLOWER',
+  NEW_SPONSORSHIP: 'NEW_SPONSORSHIP',
+  ENABLE_TWO_FACTOR: 'ENABLE_TWO_FACTOR',
+  VERIFIED_CHANNEL: 'VERIFIED_CHANNEL'
+};
+
 exports.TokenType = exports.$Enums.TokenType = {
   EMAIL_VERIFY: 'EMAIL_VERIFY',
   PASSWORD_RESET: 'PASSWORD_RESET',
@@ -226,6 +254,8 @@ exports.Prisma.ModelName = {
   ChatMessage: 'ChatMessage',
   Category: 'Category',
   Follow: 'Follow',
+  Notification: 'Notification',
+  NotificationSettings: 'NotificationSettings',
   Token: 'Token'
 };
 
