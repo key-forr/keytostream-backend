@@ -1,20 +1,24 @@
 import { Field, ObjectType } from '@nestjs/graphql'
 
+import type { NotificationSettings } from '@/prisma/generated'
 import { UserModel } from '@/src/modules/auth/account/models/user.model'
 
 @ObjectType()
-export class NotificationSettingsModel {
+export class NotificationSettingsModel implements NotificationSettings {
 	@Field(() => String)
 	public id: string
 
 	@Field(() => Boolean)
-	public emailNotifications: boolean
+	public siteNotifications: boolean
 
 	@Field(() => Boolean)
 	public telegramNotifications: boolean
 
 	@Field(() => UserModel)
 	public user: UserModel
+
+	@Field(() => String)
+	public userId: string
 
 	@Field(() => Date)
 	public createdAt: Date

@@ -1,7 +1,10 @@
-import { Resolver } from '@nestjs/graphql';
-import { NotificationService } from './notification.service';
+import { Resolver } from '@nestjs/graphql'
+
+import { NotificationService } from './notification.service'
 
 @Resolver('Notification')
 export class NotificationResolver {
-  constructor(private readonly notificationService: NotificationService) {}
+	public constructor(
+		private readonly notificationService: NotificationService
+	) {}
 }
