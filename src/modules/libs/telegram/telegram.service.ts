@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Command, Ctx, Start, Update } from 'nestjs-telegraf'
+import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf'
 import { Context, Telegraf } from 'telegraf'
 
 import { TokenType } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+
+import { BUTTONS } from './telegram.buttons'
+import { MESSAGES } from './telegram.messages'
 
 @Update()
 @Injectable()
@@ -33,13 +36,13 @@ export class TelegramService extends Telegraf {
 			})
 
 			if (!authToken) {
-				return ctx.reply('Токен не знайден')
+				await ctx.reply(MESSAGES.invalidToken)
 			}
 
 			const hasExpired = new Date(authToken.expiresIn) < new Date()
 
 			if (hasExpired) {
-				return ctx.reply('Невалідний токен')
+				await ctx.reply(MESSAGES.invalidToken)
 			}
 
 			await this.connectTelegram(authToken.userId, chatId)
@@ -50,25 +53,34 @@ export class TelegramService extends Telegraf {
 				}
 			})
 
-			return await ctx.replyWithHTML('Успішна авторизація')
+			await ctx.replyWithHTML(MESSAGES.authSuccess, BUTTONS.authSuccess)
+		} else {
+			const user = await this.findUserByChatId(chatId)
+
+			if (user) {
+				return await this.onMe(ctx)
+			} else {
+				await ctx.replyWithHTML(MESSAGES.welcome, BUTTONS.profile)
+			}
 		}
-
-		const user = await this.findUserByChatId(chatId)
-
-		if (user) {
-			return await this.onMe(ctx)
-		}
-
-		return await ctx.replyWithHTML('Ласкаво просимо')
 	}
 
 	@Command('me')
+	@Action('me')
 	public async onMe(@Ctx() ctx: Context) {
 		const chatId = ctx.chat.id.toString()
 
-		const user = this.findUserByChatId(chatId)
+		const user = await this.findUserByChatId(chatId)
+		const followersCount = await this.prismaService.follow.count({
+			where: {
+				followingId: (await user).id
+			}
+		})
 
-		await ctx.reply(`Email користувача: ${(await user).email}`)
+		await ctx.replyWithHTML(
+			MESSAGES.profile(user, followersCount),
+			BUTTONS.profile
+		)
 	}
 
 	private async connectTelegram(userId: string, chatId: string) {
