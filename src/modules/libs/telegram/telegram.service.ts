@@ -50,8 +50,16 @@ export class TelegramService extends Telegraf {
 				}
 			})
 
-			await ctx.replyWithHTML('Успішна авторизація')
+			return await ctx.replyWithHTML('Успішна авторизація')
 		}
+
+		const user = await this.findUserByChatId(chatId)
+
+		if (user) {
+			return await this.onMe(ctx)
+		}
+
+		return await ctx.replyWithHTML('Ласкаво просимо')
 	}
 
 	@Command('me')
