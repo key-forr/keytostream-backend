@@ -5,6 +5,7 @@ import { Context, Telegraf } from 'telegraf'
 
 import { TokenType } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
 import { BUTTONS } from './telegram.buttons'
 import { MESSAGES } from './telegram.messages'
@@ -80,6 +81,46 @@ export class TelegramService extends Telegraf {
 		await ctx.replyWithHTML(
 			MESSAGES.profile(user, followersCount),
 			BUTTONS.profile
+		)
+	}
+
+	@Command('follows')
+	@Action('follows')
+	public async onFollows(@Ctx() ctx: Context) {
+		const chatId = ctx.chat.id.toString()
+
+		const user = await this.findUserByChatId(chatId)
+		const follows = await this.prismaService.follow.findMany({
+			where: {
+				followerId: user.id
+			},
+			include: {
+				following: true
+			}
+		})
+
+		if (user && follows.length) {
+			const followsList = follows
+				.map(follow => MESSAGES.follows(follow.following))
+				.join('\n')
+
+			const message = `<b>🌟 Канали на які ви підписані:</b>\n\n${followsList}`
+
+			await ctx.replyWithHTML(message)
+		} else {
+			await ctx.replyWithHTML('<b>❌ У вас немає підписок.</b>')
+		}
+	}
+
+	public async sendPasswordResetToken(
+		chatId: string,
+		token: string,
+		metadata: SessionMetadata
+	) {
+		await this.telegram.sendMessage(
+			chatId,
+			MESSAGES.resetPassword(token, metadata),
+			{ parse_mode: 'HTML' }
 		)
 	}
 
