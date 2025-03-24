@@ -20,7 +20,7 @@ model User {
   avatar String?
   bio    String?
 
-  telegramId String? @map("telegram_id")
+  telegramId String? @unique @map("telegram_id")
 
   isVerified Boolean @default(false) @map("is_verified")
 
