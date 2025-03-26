@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config'
 import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf'
 import { Context, Telegraf } from 'telegraf'
 
-import { TokenType } from '@/prisma/generated'
+import { TokenType, User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
@@ -140,6 +140,24 @@ export class TelegramService extends Telegraf {
 		await this.telegram.sendMessage(chatId, MESSAGES.accountDeleted, {
 			parse_mode: 'HTML'
 		})
+	}
+
+	public async sendStreamStart(chatId: string, channel: User) {
+		await this.telegram.sendMessage(chatId, MESSAGES.streamStart(channel), {
+			parse_mode: 'HTML'
+		})
+	}
+
+	public async sendNewFollowing(chatId: string, follower: User) {
+		const user = await this.findUserByChatId(chatId)
+
+		await this.telegram.sendMessage(
+			chatId,
+			MESSAGES.newFollowing(follower, user.followings.length),
+			{
+				parse_mode: 'HTML'
+			}
+		)
 	}
 
 	private async connectTelegram(userId: string, chatId: string) {
