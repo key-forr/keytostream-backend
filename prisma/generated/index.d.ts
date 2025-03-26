@@ -54,6 +54,21 @@ export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
  */
 export type NotificationSettings = $Result.DefaultSelection<Prisma.$NotificationSettingsPayload>
 /**
+ * Model Transaction
+ * 
+ */
+export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
+/**
+ * Model SponsorshipPlan
+ * 
+ */
+export type SponsorshipPlan = $Result.DefaultSelection<Prisma.$SponsorshipPlanPayload>
+/**
+ * Model SponsorshipSubscription
+ * 
+ */
+export type SponsorshipSubscription = $Result.DefaultSelection<Prisma.$SponsorshipSubscriptionPayload>
+/**
  * Model Token
  * 
  */
@@ -83,6 +98,16 @@ export const NotificationType: {
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
 
+
+export const TransactionStatus: {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+};
+
+export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
+
 }
 
 export type TokenType = $Enums.TokenType
@@ -92,6 +117,10 @@ export const TokenType: typeof $Enums.TokenType
 export type NotificationType = $Enums.NotificationType
 
 export const NotificationType: typeof $Enums.NotificationType
+
+export type TransactionStatus = $Enums.TransactionStatus
+
+export const TransactionStatus: typeof $Enums.TransactionStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -297,6 +326,36 @@ export class PrismaClient<
     * ```
     */
   get notificationSettings(): Prisma.NotificationSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transaction`: Exposes CRUD operations for the **Transaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Transactions
+    * const transactions = await prisma.transaction.findMany()
+    * ```
+    */
+  get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sponsorshipPlan`: Exposes CRUD operations for the **SponsorshipPlan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SponsorshipPlans
+    * const sponsorshipPlans = await prisma.sponsorshipPlan.findMany()
+    * ```
+    */
+  get sponsorshipPlan(): Prisma.SponsorshipPlanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sponsorshipSubscription`: Exposes CRUD operations for the **SponsorshipSubscription** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SponsorshipSubscriptions
+    * const sponsorshipSubscriptions = await prisma.sponsorshipSubscription.findMany()
+    * ```
+    */
+  get sponsorshipSubscription(): Prisma.SponsorshipSubscriptionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.token`: Exposes CRUD operations for the **Token** model.
@@ -755,6 +814,9 @@ export namespace Prisma {
     Follow: 'Follow',
     Notification: 'Notification',
     NotificationSettings: 'NotificationSettings',
+    Transaction: 'Transaction',
+    SponsorshipPlan: 'SponsorshipPlan',
+    SponsorshipSubscription: 'SponsorshipSubscription',
     Token: 'Token'
   };
 
@@ -774,7 +836,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "socialLink" | "stream" | "chatMessage" | "category" | "follow" | "notification" | "notificationSettings" | "token"
+      modelProps: "user" | "socialLink" | "stream" | "chatMessage" | "category" | "follow" | "notification" | "notificationSettings" | "transaction" | "sponsorshipPlan" | "sponsorshipSubscription" | "token"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1370,6 +1432,228 @@ export namespace Prisma {
           }
         }
       }
+      Transaction: {
+        payload: Prisma.$TransactionPayload<ExtArgs>
+        fields: Prisma.TransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.TransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findMany: {
+            args: Prisma.TransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          create: {
+            args: Prisma.TransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          createMany: {
+            args: Prisma.TransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          delete: {
+            args: Prisma.TransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          update: {
+            args: Prisma.TransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.TransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransaction>
+          }
+          groupBy: {
+            args: Prisma.TransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<TransactionCountAggregateOutputType> | number
+          }
+        }
+      }
+      SponsorshipPlan: {
+        payload: Prisma.$SponsorshipPlanPayload<ExtArgs>
+        fields: Prisma.SponsorshipPlanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SponsorshipPlanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SponsorshipPlanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          findFirst: {
+            args: Prisma.SponsorshipPlanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SponsorshipPlanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          findMany: {
+            args: Prisma.SponsorshipPlanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>[]
+          }
+          create: {
+            args: Prisma.SponsorshipPlanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          createMany: {
+            args: Prisma.SponsorshipPlanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SponsorshipPlanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>[]
+          }
+          delete: {
+            args: Prisma.SponsorshipPlanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          update: {
+            args: Prisma.SponsorshipPlanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          deleteMany: {
+            args: Prisma.SponsorshipPlanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SponsorshipPlanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SponsorshipPlanUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>[]
+          }
+          upsert: {
+            args: Prisma.SponsorshipPlanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipPlanPayload>
+          }
+          aggregate: {
+            args: Prisma.SponsorshipPlanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSponsorshipPlan>
+          }
+          groupBy: {
+            args: Prisma.SponsorshipPlanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SponsorshipPlanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SponsorshipPlanCountArgs<ExtArgs>
+            result: $Utils.Optional<SponsorshipPlanCountAggregateOutputType> | number
+          }
+        }
+      }
+      SponsorshipSubscription: {
+        payload: Prisma.$SponsorshipSubscriptionPayload<ExtArgs>
+        fields: Prisma.SponsorshipSubscriptionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SponsorshipSubscriptionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SponsorshipSubscriptionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          findFirst: {
+            args: Prisma.SponsorshipSubscriptionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SponsorshipSubscriptionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          findMany: {
+            args: Prisma.SponsorshipSubscriptionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>[]
+          }
+          create: {
+            args: Prisma.SponsorshipSubscriptionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          createMany: {
+            args: Prisma.SponsorshipSubscriptionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SponsorshipSubscriptionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>[]
+          }
+          delete: {
+            args: Prisma.SponsorshipSubscriptionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          update: {
+            args: Prisma.SponsorshipSubscriptionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SponsorshipSubscriptionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SponsorshipSubscriptionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SponsorshipSubscriptionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SponsorshipSubscriptionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SponsorshipSubscriptionPayload>
+          }
+          aggregate: {
+            args: Prisma.SponsorshipSubscriptionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSponsorshipSubscription>
+          }
+          groupBy: {
+            args: Prisma.SponsorshipSubscriptionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SponsorshipSubscriptionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SponsorshipSubscriptionCountArgs<ExtArgs>
+            result: $Utils.Optional<SponsorshipSubscriptionCountAggregateOutputType> | number
+          }
+        }
+      }
       Token: {
         payload: Prisma.$TokenPayload<ExtArgs>
         fields: Prisma.TokenFieldRefs
@@ -1536,6 +1820,9 @@ export namespace Prisma {
     follow?: FollowOmit
     notification?: NotificationOmit
     notificationSettings?: NotificationSettingsOmit
+    transaction?: TransactionOmit
+    sponsorshipPlan?: SponsorshipPlanOmit
+    sponsorshipSubscription?: SponsorshipSubscriptionOmit
     token?: TokenOmit
   }
 
@@ -1637,6 +1924,10 @@ export namespace Prisma {
     notifications: number
     followers: number
     followings: number
+    transactions: number
+    sponsorshipPlans: number
+    sponsorshipSubscriptions: number
+    sponsors: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1646,6 +1937,10 @@ export namespace Prisma {
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
     followers?: boolean | UserCountOutputTypeCountFollowersArgs
     followings?: boolean | UserCountOutputTypeCountFollowingsArgs
+    transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
+    sponsorshipPlans?: boolean | UserCountOutputTypeCountSponsorshipPlansArgs
+    sponsorshipSubscriptions?: boolean | UserCountOutputTypeCountSponsorshipSubscriptionsArgs
+    sponsors?: boolean | UserCountOutputTypeCountSponsorsArgs
   }
 
   // Custom InputTypes
@@ -1699,6 +1994,34 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFollowingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FollowWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSponsorshipPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipPlanWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSponsorshipSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipSubscriptionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSponsorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipSubscriptionWhereInput
   }
 
 
@@ -1761,6 +2084,37 @@ export namespace Prisma {
    */
   export type CategoryCountOutputTypeCountStreamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StreamWhereInput
+  }
+
+
+  /**
+   * Count Type SponsorshipPlanCountOutputType
+   */
+
+  export type SponsorshipPlanCountOutputType = {
+    sponsorshipSubscriptions: number
+  }
+
+  export type SponsorshipPlanCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sponsorshipSubscriptions?: boolean | SponsorshipPlanCountOutputTypeCountSponsorshipSubscriptionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SponsorshipPlanCountOutputType without action
+   */
+  export type SponsorshipPlanCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlanCountOutputType
+     */
+    select?: SponsorshipPlanCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SponsorshipPlanCountOutputType without action
+   */
+  export type SponsorshipPlanCountOutputTypeCountSponsorshipSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipSubscriptionWhereInput
   }
 
 
@@ -2028,6 +2382,10 @@ export namespace Prisma {
     notificationSettings?: boolean | User$notificationSettingsArgs<ExtArgs>
     followers?: boolean | User$followersArgs<ExtArgs>
     followings?: boolean | User$followingsArgs<ExtArgs>
+    transactions?: boolean | User$transactionsArgs<ExtArgs>
+    sponsorshipPlans?: boolean | User$sponsorshipPlansArgs<ExtArgs>
+    sponsorshipSubscriptions?: boolean | User$sponsorshipSubscriptionsArgs<ExtArgs>
+    sponsors?: boolean | User$sponsorsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2098,6 +2456,10 @@ export namespace Prisma {
     notificationSettings?: boolean | User$notificationSettingsArgs<ExtArgs>
     followers?: boolean | User$followersArgs<ExtArgs>
     followings?: boolean | User$followingsArgs<ExtArgs>
+    transactions?: boolean | User$transactionsArgs<ExtArgs>
+    sponsorshipPlans?: boolean | User$sponsorshipPlansArgs<ExtArgs>
+    sponsorshipSubscriptions?: boolean | User$sponsorshipSubscriptionsArgs<ExtArgs>
+    sponsors?: boolean | User$sponsorsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2114,6 +2476,10 @@ export namespace Prisma {
       notificationSettings: Prisma.$NotificationSettingsPayload<ExtArgs> | null
       followers: Prisma.$FollowPayload<ExtArgs>[]
       followings: Prisma.$FollowPayload<ExtArgs>[]
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+      sponsorshipPlans: Prisma.$SponsorshipPlanPayload<ExtArgs>[]
+      sponsorshipSubscriptions: Prisma.$SponsorshipSubscriptionPayload<ExtArgs>[]
+      sponsors: Prisma.$SponsorshipSubscriptionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2534,6 +2900,10 @@ export namespace Prisma {
     notificationSettings<T extends User$notificationSettingsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationSettingsArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     followers<T extends User$followersArgs<ExtArgs> = {}>(args?: Subset<T, User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     followings<T extends User$followingsArgs<ExtArgs> = {}>(args?: Subset<T, User$followingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sponsorshipPlans<T extends User$sponsorshipPlansArgs<ExtArgs> = {}>(args?: Subset<T, User$sponsorshipPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sponsorshipSubscriptions<T extends User$sponsorshipSubscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sponsorshipSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sponsors<T extends User$sponsorsArgs<ExtArgs> = {}>(args?: Subset<T, User$sponsorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3146,6 +3516,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * User.transactions
+   */
+  export type User$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * User.sponsorshipPlans
+   */
+  export type User$sponsorshipPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    where?: SponsorshipPlanWhereInput
+    orderBy?: SponsorshipPlanOrderByWithRelationInput | SponsorshipPlanOrderByWithRelationInput[]
+    cursor?: SponsorshipPlanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SponsorshipPlanScalarFieldEnum | SponsorshipPlanScalarFieldEnum[]
+  }
+
+  /**
+   * User.sponsorshipSubscriptions
+   */
+  export type User$sponsorshipSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    where?: SponsorshipSubscriptionWhereInput
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * User.sponsors
+   */
+  export type User$sponsorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    where?: SponsorshipSubscriptionWhereInput
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
   }
 
   /**
@@ -10971,6 +11437,3506 @@ export namespace Prisma {
 
 
   /**
+   * Model Transaction
+   */
+
+  export type AggregateTransaction = {
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  export type TransactionAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TransactionSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type TransactionMinAggregateOutputType = {
+    id: string | null
+    amount: number | null
+    currency: string | null
+    stripeSubscriptionId: string | null
+    status: $Enums.TransactionStatus | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionMaxAggregateOutputType = {
+    id: string | null
+    amount: number | null
+    currency: string | null
+    stripeSubscriptionId: string | null
+    status: $Enums.TransactionStatus | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionCountAggregateOutputType = {
+    id: number
+    amount: number
+    currency: number
+    stripeSubscriptionId: number
+    status: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TransactionAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type TransactionSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type TransactionMinAggregateInputType = {
+    id?: true
+    amount?: true
+    currency?: true
+    stripeSubscriptionId?: true
+    status?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionMaxAggregateInputType = {
+    id?: true
+    amount?: true
+    currency?: true
+    stripeSubscriptionId?: true
+    status?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionCountAggregateInputType = {
+    id?: true
+    amount?: true
+    currency?: true
+    stripeSubscriptionId?: true
+    status?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transaction to aggregate.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Transactions
+    **/
+    _count?: true | TransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type GetTransactionAggregateType<T extends TransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransaction[P]>
+      : GetScalarType<T[P], AggregateTransaction[P]>
+  }
+
+
+
+
+  export type TransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithAggregationInput | TransactionOrderByWithAggregationInput[]
+    by: TransactionScalarFieldEnum[] | TransactionScalarFieldEnum
+    having?: TransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransactionCountAggregateInputType | true
+    _avg?: TransactionAvgAggregateInputType
+    _sum?: TransactionSumAggregateInputType
+    _min?: TransactionMinAggregateInputType
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type TransactionGroupByOutputType = {
+    id: string
+    amount: number
+    currency: string
+    stripeSubscriptionId: string | null
+    status: $Enums.TransactionStatus
+    userId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  type GetTransactionGroupByPayload<T extends TransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    currency?: boolean
+    stripeSubscriptionId?: boolean
+    status?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    currency?: boolean
+    stripeSubscriptionId?: boolean
+    status?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    currency?: boolean
+    stripeSubscriptionId?: boolean
+    status?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectScalar = {
+    id?: boolean
+    amount?: boolean
+    currency?: boolean
+    stripeSubscriptionId?: boolean
+    status?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "currency" | "stripeSubscriptionId" | "status" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+  export type TransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }
+  export type TransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }
+  export type TransactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Transaction$userArgs<ExtArgs>
+  }
+
+  export type $TransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Transaction"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      amount: number
+      currency: string
+      stripeSubscriptionId: string | null
+      status: $Enums.TransactionStatus
+      userId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["transaction"]>
+    composites: {}
+  }
+
+  type TransactionGetPayload<S extends boolean | null | undefined | TransactionDefaultArgs> = $Result.GetResult<Prisma.$TransactionPayload, S>
+
+  type TransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransactionCountAggregateInputType | true
+    }
+
+  export interface TransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Transaction'], meta: { name: 'Transaction' } }
+    /**
+     * Find zero or one Transaction that matches the filter.
+     * @param {TransactionFindUniqueArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransactionFindUniqueArgs>(args: SelectSubset<T, TransactionFindUniqueArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Transaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransactionFindUniqueOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, TransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransactionFindFirstArgs>(args?: SelectSubset<T, TransactionFindFirstArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, TransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Transactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Transactions
+     * const transactions = await prisma.transaction.findMany()
+     * 
+     * // Get first 10 Transactions
+     * const transactions = await prisma.transaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transactionWithIdOnly = await prisma.transaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransactionFindManyArgs>(args?: SelectSubset<T, TransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Transaction.
+     * @param {TransactionCreateArgs} args - Arguments to create a Transaction.
+     * @example
+     * // Create one Transaction
+     * const Transaction = await prisma.transaction.create({
+     *   data: {
+     *     // ... data to create a Transaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransactionCreateArgs>(args: SelectSubset<T, TransactionCreateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Transactions.
+     * @param {TransactionCreateManyArgs} args - Arguments to create many Transactions.
+     * @example
+     * // Create many Transactions
+     * const transaction = await prisma.transaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransactionCreateManyArgs>(args?: SelectSubset<T, TransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Transactions and returns the data saved in the database.
+     * @param {TransactionCreateManyAndReturnArgs} args - Arguments to create many Transactions.
+     * @example
+     * // Create many Transactions
+     * const transaction = await prisma.transaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Transactions and only return the `id`
+     * const transactionWithIdOnly = await prisma.transaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, TransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Transaction.
+     * @param {TransactionDeleteArgs} args - Arguments to delete one Transaction.
+     * @example
+     * // Delete one Transaction
+     * const Transaction = await prisma.transaction.delete({
+     *   where: {
+     *     // ... filter to delete one Transaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransactionDeleteArgs>(args: SelectSubset<T, TransactionDeleteArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Transaction.
+     * @param {TransactionUpdateArgs} args - Arguments to update one Transaction.
+     * @example
+     * // Update one Transaction
+     * const transaction = await prisma.transaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransactionUpdateArgs>(args: SelectSubset<T, TransactionUpdateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Transactions.
+     * @param {TransactionDeleteManyArgs} args - Arguments to filter Transactions to delete.
+     * @example
+     * // Delete a few Transactions
+     * const { count } = await prisma.transaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransactionDeleteManyArgs>(args?: SelectSubset<T, TransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Transactions
+     * const transaction = await prisma.transaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransactionUpdateManyArgs>(args: SelectSubset<T, TransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Transactions and returns the data updated in the database.
+     * @param {TransactionUpdateManyAndReturnArgs} args - Arguments to update many Transactions.
+     * @example
+     * // Update many Transactions
+     * const transaction = await prisma.transaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Transactions and only return the `id`
+     * const transactionWithIdOnly = await prisma.transaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, TransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Transaction.
+     * @param {TransactionUpsertArgs} args - Arguments to update or create a Transaction.
+     * @example
+     * // Update or create a Transaction
+     * const transaction = await prisma.transaction.upsert({
+     *   create: {
+     *     // ... data to create a Transaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Transaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransactionUpsertArgs>(args: SelectSubset<T, TransactionUpsertArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionCountArgs} args - Arguments to filter Transactions to count.
+     * @example
+     * // Count the number of Transactions
+     * const count = await prisma.transaction.count({
+     *   where: {
+     *     // ... the filter for the Transactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransactionCountArgs>(
+      args?: Subset<T, TransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransactionAggregateArgs>(args: Subset<T, TransactionAggregateArgs>): Prisma.PrismaPromise<GetTransactionAggregateType<T>>
+
+    /**
+     * Group by Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransactionGroupByArgs['orderBy'] }
+        : { orderBy?: TransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Transaction model
+   */
+  readonly fields: TransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Transaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends Transaction$userArgs<ExtArgs> = {}>(args?: Subset<T, Transaction$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Transaction model
+   */ 
+  interface TransactionFieldRefs {
+    readonly id: FieldRef<"Transaction", 'String'>
+    readonly amount: FieldRef<"Transaction", 'Float'>
+    readonly currency: FieldRef<"Transaction", 'String'>
+    readonly stripeSubscriptionId: FieldRef<"Transaction", 'String'>
+    readonly status: FieldRef<"Transaction", 'TransactionStatus'>
+    readonly userId: FieldRef<"Transaction", 'String'>
+    readonly createdAt: FieldRef<"Transaction", 'DateTime'>
+    readonly updatedAt: FieldRef<"Transaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Transaction findUnique
+   */
+  export type TransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findUniqueOrThrow
+   */
+  export type TransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findFirst
+   */
+  export type TransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findFirstOrThrow
+   */
+  export type TransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findMany
+   */
+  export type TransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transactions to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction create
+   */
+  export type TransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Transaction.
+     */
+    data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+  }
+
+  /**
+   * Transaction createMany
+   */
+  export type TransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Transactions.
+     */
+    data: TransactionCreateManyInput | TransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Transaction createManyAndReturn
+   */
+  export type TransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Transactions.
+     */
+    data: TransactionCreateManyInput | TransactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Transaction update
+   */
+  export type TransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Transaction.
+     */
+    data: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+    /**
+     * Choose, which Transaction to update.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction updateMany
+   */
+  export type TransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Transactions.
+     */
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Transactions to update
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction updateManyAndReturn
+   */
+  export type TransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * The data used to update Transactions.
+     */
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Transactions to update
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Transaction upsert
+   */
+  export type TransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Transaction to update in case it exists.
+     */
+    where: TransactionWhereUniqueInput
+    /**
+     * In case the Transaction found by the `where` argument doesn't exist, create a new Transaction with this data.
+     */
+    create: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    /**
+     * In case the Transaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * Transaction delete
+   */
+  export type TransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter which Transaction to delete.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction deleteMany
+   */
+  export type TransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transactions to delete
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction.user
+   */
+  export type Transaction$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Transaction without action
+   */
+  export type TransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SponsorshipPlan
+   */
+
+  export type AggregateSponsorshipPlan = {
+    _count: SponsorshipPlanCountAggregateOutputType | null
+    _avg: SponsorshipPlanAvgAggregateOutputType | null
+    _sum: SponsorshipPlanSumAggregateOutputType | null
+    _min: SponsorshipPlanMinAggregateOutputType | null
+    _max: SponsorshipPlanMaxAggregateOutputType | null
+  }
+
+  export type SponsorshipPlanAvgAggregateOutputType = {
+    price: number | null
+  }
+
+  export type SponsorshipPlanSumAggregateOutputType = {
+    price: number | null
+  }
+
+  export type SponsorshipPlanMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    price: number | null
+    stripeProductId: string | null
+    stripePlanId: string | null
+    channelId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SponsorshipPlanMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    price: number | null
+    stripeProductId: string | null
+    stripePlanId: string | null
+    channelId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SponsorshipPlanCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    price: number
+    stripeProductId: number
+    stripePlanId: number
+    channelId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SponsorshipPlanAvgAggregateInputType = {
+    price?: true
+  }
+
+  export type SponsorshipPlanSumAggregateInputType = {
+    price?: true
+  }
+
+  export type SponsorshipPlanMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    price?: true
+    stripeProductId?: true
+    stripePlanId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SponsorshipPlanMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    price?: true
+    stripeProductId?: true
+    stripePlanId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SponsorshipPlanCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    price?: true
+    stripeProductId?: true
+    stripePlanId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SponsorshipPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SponsorshipPlan to aggregate.
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipPlans to fetch.
+     */
+    orderBy?: SponsorshipPlanOrderByWithRelationInput | SponsorshipPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SponsorshipPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SponsorshipPlans
+    **/
+    _count?: true | SponsorshipPlanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SponsorshipPlanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SponsorshipPlanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SponsorshipPlanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SponsorshipPlanMaxAggregateInputType
+  }
+
+  export type GetSponsorshipPlanAggregateType<T extends SponsorshipPlanAggregateArgs> = {
+        [P in keyof T & keyof AggregateSponsorshipPlan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSponsorshipPlan[P]>
+      : GetScalarType<T[P], AggregateSponsorshipPlan[P]>
+  }
+
+
+
+
+  export type SponsorshipPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipPlanWhereInput
+    orderBy?: SponsorshipPlanOrderByWithAggregationInput | SponsorshipPlanOrderByWithAggregationInput[]
+    by: SponsorshipPlanScalarFieldEnum[] | SponsorshipPlanScalarFieldEnum
+    having?: SponsorshipPlanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SponsorshipPlanCountAggregateInputType | true
+    _avg?: SponsorshipPlanAvgAggregateInputType
+    _sum?: SponsorshipPlanSumAggregateInputType
+    _min?: SponsorshipPlanMinAggregateInputType
+    _max?: SponsorshipPlanMaxAggregateInputType
+  }
+
+  export type SponsorshipPlanGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    channelId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SponsorshipPlanCountAggregateOutputType | null
+    _avg: SponsorshipPlanAvgAggregateOutputType | null
+    _sum: SponsorshipPlanSumAggregateOutputType | null
+    _min: SponsorshipPlanMinAggregateOutputType | null
+    _max: SponsorshipPlanMaxAggregateOutputType | null
+  }
+
+  type GetSponsorshipPlanGroupByPayload<T extends SponsorshipPlanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SponsorshipPlanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SponsorshipPlanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SponsorshipPlanGroupByOutputType[P]>
+            : GetScalarType<T[P], SponsorshipPlanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SponsorshipPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    price?: boolean
+    stripeProductId?: boolean
+    stripePlanId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+    sponsorshipSubscriptions?: boolean | SponsorshipPlan$sponsorshipSubscriptionsArgs<ExtArgs>
+    _count?: boolean | SponsorshipPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipPlan"]>
+
+  export type SponsorshipPlanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    price?: boolean
+    stripeProductId?: boolean
+    stripePlanId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipPlan"]>
+
+  export type SponsorshipPlanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    price?: boolean
+    stripeProductId?: boolean
+    stripePlanId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipPlan"]>
+
+  export type SponsorshipPlanSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    price?: boolean
+    stripeProductId?: boolean
+    stripePlanId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SponsorshipPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "price" | "stripeProductId" | "stripePlanId" | "channelId" | "createdAt" | "updatedAt", ExtArgs["result"]["sponsorshipPlan"]>
+  export type SponsorshipPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+    sponsorshipSubscriptions?: boolean | SponsorshipPlan$sponsorshipSubscriptionsArgs<ExtArgs>
+    _count?: boolean | SponsorshipPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SponsorshipPlanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+  }
+  export type SponsorshipPlanIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    channel?: boolean | SponsorshipPlan$channelArgs<ExtArgs>
+  }
+
+  export type $SponsorshipPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SponsorshipPlan"
+    objects: {
+      channel: Prisma.$UserPayload<ExtArgs> | null
+      sponsorshipSubscriptions: Prisma.$SponsorshipSubscriptionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      price: number
+      stripeProductId: string
+      stripePlanId: string
+      channelId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["sponsorshipPlan"]>
+    composites: {}
+  }
+
+  type SponsorshipPlanGetPayload<S extends boolean | null | undefined | SponsorshipPlanDefaultArgs> = $Result.GetResult<Prisma.$SponsorshipPlanPayload, S>
+
+  type SponsorshipPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SponsorshipPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SponsorshipPlanCountAggregateInputType | true
+    }
+
+  export interface SponsorshipPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SponsorshipPlan'], meta: { name: 'SponsorshipPlan' } }
+    /**
+     * Find zero or one SponsorshipPlan that matches the filter.
+     * @param {SponsorshipPlanFindUniqueArgs} args - Arguments to find a SponsorshipPlan
+     * @example
+     * // Get one SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SponsorshipPlanFindUniqueArgs>(args: SelectSubset<T, SponsorshipPlanFindUniqueArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SponsorshipPlan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SponsorshipPlanFindUniqueOrThrowArgs} args - Arguments to find a SponsorshipPlan
+     * @example
+     * // Get one SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SponsorshipPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, SponsorshipPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SponsorshipPlan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanFindFirstArgs} args - Arguments to find a SponsorshipPlan
+     * @example
+     * // Get one SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SponsorshipPlanFindFirstArgs>(args?: SelectSubset<T, SponsorshipPlanFindFirstArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SponsorshipPlan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanFindFirstOrThrowArgs} args - Arguments to find a SponsorshipPlan
+     * @example
+     * // Get one SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SponsorshipPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, SponsorshipPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SponsorshipPlans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SponsorshipPlans
+     * const sponsorshipPlans = await prisma.sponsorshipPlan.findMany()
+     * 
+     * // Get first 10 SponsorshipPlans
+     * const sponsorshipPlans = await prisma.sponsorshipPlan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sponsorshipPlanWithIdOnly = await prisma.sponsorshipPlan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SponsorshipPlanFindManyArgs>(args?: SelectSubset<T, SponsorshipPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SponsorshipPlan.
+     * @param {SponsorshipPlanCreateArgs} args - Arguments to create a SponsorshipPlan.
+     * @example
+     * // Create one SponsorshipPlan
+     * const SponsorshipPlan = await prisma.sponsorshipPlan.create({
+     *   data: {
+     *     // ... data to create a SponsorshipPlan
+     *   }
+     * })
+     * 
+     */
+    create<T extends SponsorshipPlanCreateArgs>(args: SelectSubset<T, SponsorshipPlanCreateArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SponsorshipPlans.
+     * @param {SponsorshipPlanCreateManyArgs} args - Arguments to create many SponsorshipPlans.
+     * @example
+     * // Create many SponsorshipPlans
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SponsorshipPlanCreateManyArgs>(args?: SelectSubset<T, SponsorshipPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SponsorshipPlans and returns the data saved in the database.
+     * @param {SponsorshipPlanCreateManyAndReturnArgs} args - Arguments to create many SponsorshipPlans.
+     * @example
+     * // Create many SponsorshipPlans
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SponsorshipPlans and only return the `id`
+     * const sponsorshipPlanWithIdOnly = await prisma.sponsorshipPlan.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SponsorshipPlanCreateManyAndReturnArgs>(args?: SelectSubset<T, SponsorshipPlanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SponsorshipPlan.
+     * @param {SponsorshipPlanDeleteArgs} args - Arguments to delete one SponsorshipPlan.
+     * @example
+     * // Delete one SponsorshipPlan
+     * const SponsorshipPlan = await prisma.sponsorshipPlan.delete({
+     *   where: {
+     *     // ... filter to delete one SponsorshipPlan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SponsorshipPlanDeleteArgs>(args: SelectSubset<T, SponsorshipPlanDeleteArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SponsorshipPlan.
+     * @param {SponsorshipPlanUpdateArgs} args - Arguments to update one SponsorshipPlan.
+     * @example
+     * // Update one SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SponsorshipPlanUpdateArgs>(args: SelectSubset<T, SponsorshipPlanUpdateArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SponsorshipPlans.
+     * @param {SponsorshipPlanDeleteManyArgs} args - Arguments to filter SponsorshipPlans to delete.
+     * @example
+     * // Delete a few SponsorshipPlans
+     * const { count } = await prisma.sponsorshipPlan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SponsorshipPlanDeleteManyArgs>(args?: SelectSubset<T, SponsorshipPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SponsorshipPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SponsorshipPlans
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SponsorshipPlanUpdateManyArgs>(args: SelectSubset<T, SponsorshipPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SponsorshipPlans and returns the data updated in the database.
+     * @param {SponsorshipPlanUpdateManyAndReturnArgs} args - Arguments to update many SponsorshipPlans.
+     * @example
+     * // Update many SponsorshipPlans
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SponsorshipPlans and only return the `id`
+     * const sponsorshipPlanWithIdOnly = await prisma.sponsorshipPlan.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SponsorshipPlanUpdateManyAndReturnArgs>(args: SelectSubset<T, SponsorshipPlanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SponsorshipPlan.
+     * @param {SponsorshipPlanUpsertArgs} args - Arguments to update or create a SponsorshipPlan.
+     * @example
+     * // Update or create a SponsorshipPlan
+     * const sponsorshipPlan = await prisma.sponsorshipPlan.upsert({
+     *   create: {
+     *     // ... data to create a SponsorshipPlan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SponsorshipPlan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SponsorshipPlanUpsertArgs>(args: SelectSubset<T, SponsorshipPlanUpsertArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SponsorshipPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanCountArgs} args - Arguments to filter SponsorshipPlans to count.
+     * @example
+     * // Count the number of SponsorshipPlans
+     * const count = await prisma.sponsorshipPlan.count({
+     *   where: {
+     *     // ... the filter for the SponsorshipPlans we want to count
+     *   }
+     * })
+    **/
+    count<T extends SponsorshipPlanCountArgs>(
+      args?: Subset<T, SponsorshipPlanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SponsorshipPlanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SponsorshipPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SponsorshipPlanAggregateArgs>(args: Subset<T, SponsorshipPlanAggregateArgs>): Prisma.PrismaPromise<GetSponsorshipPlanAggregateType<T>>
+
+    /**
+     * Group by SponsorshipPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipPlanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SponsorshipPlanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SponsorshipPlanGroupByArgs['orderBy'] }
+        : { orderBy?: SponsorshipPlanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SponsorshipPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSponsorshipPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SponsorshipPlan model
+   */
+  readonly fields: SponsorshipPlanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SponsorshipPlan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SponsorshipPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    channel<T extends SponsorshipPlan$channelArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipPlan$channelArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    sponsorshipSubscriptions<T extends SponsorshipPlan$sponsorshipSubscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipPlan$sponsorshipSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SponsorshipPlan model
+   */ 
+  interface SponsorshipPlanFieldRefs {
+    readonly id: FieldRef<"SponsorshipPlan", 'String'>
+    readonly title: FieldRef<"SponsorshipPlan", 'String'>
+    readonly description: FieldRef<"SponsorshipPlan", 'String'>
+    readonly price: FieldRef<"SponsorshipPlan", 'Float'>
+    readonly stripeProductId: FieldRef<"SponsorshipPlan", 'String'>
+    readonly stripePlanId: FieldRef<"SponsorshipPlan", 'String'>
+    readonly channelId: FieldRef<"SponsorshipPlan", 'String'>
+    readonly createdAt: FieldRef<"SponsorshipPlan", 'DateTime'>
+    readonly updatedAt: FieldRef<"SponsorshipPlan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SponsorshipPlan findUnique
+   */
+  export type SponsorshipPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipPlan to fetch.
+     */
+    where: SponsorshipPlanWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipPlan findUniqueOrThrow
+   */
+  export type SponsorshipPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipPlan to fetch.
+     */
+    where: SponsorshipPlanWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipPlan findFirst
+   */
+  export type SponsorshipPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipPlan to fetch.
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipPlans to fetch.
+     */
+    orderBy?: SponsorshipPlanOrderByWithRelationInput | SponsorshipPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SponsorshipPlans.
+     */
+    cursor?: SponsorshipPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SponsorshipPlans.
+     */
+    distinct?: SponsorshipPlanScalarFieldEnum | SponsorshipPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipPlan findFirstOrThrow
+   */
+  export type SponsorshipPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipPlan to fetch.
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipPlans to fetch.
+     */
+    orderBy?: SponsorshipPlanOrderByWithRelationInput | SponsorshipPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SponsorshipPlans.
+     */
+    cursor?: SponsorshipPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SponsorshipPlans.
+     */
+    distinct?: SponsorshipPlanScalarFieldEnum | SponsorshipPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipPlan findMany
+   */
+  export type SponsorshipPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipPlans to fetch.
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipPlans to fetch.
+     */
+    orderBy?: SponsorshipPlanOrderByWithRelationInput | SponsorshipPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SponsorshipPlans.
+     */
+    cursor?: SponsorshipPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipPlans.
+     */
+    skip?: number
+    distinct?: SponsorshipPlanScalarFieldEnum | SponsorshipPlanScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipPlan create
+   */
+  export type SponsorshipPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SponsorshipPlan.
+     */
+    data: XOR<SponsorshipPlanCreateInput, SponsorshipPlanUncheckedCreateInput>
+  }
+
+  /**
+   * SponsorshipPlan createMany
+   */
+  export type SponsorshipPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SponsorshipPlans.
+     */
+    data: SponsorshipPlanCreateManyInput | SponsorshipPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SponsorshipPlan createManyAndReturn
+   */
+  export type SponsorshipPlanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * The data used to create many SponsorshipPlans.
+     */
+    data: SponsorshipPlanCreateManyInput | SponsorshipPlanCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SponsorshipPlan update
+   */
+  export type SponsorshipPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SponsorshipPlan.
+     */
+    data: XOR<SponsorshipPlanUpdateInput, SponsorshipPlanUncheckedUpdateInput>
+    /**
+     * Choose, which SponsorshipPlan to update.
+     */
+    where: SponsorshipPlanWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipPlan updateMany
+   */
+  export type SponsorshipPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SponsorshipPlans.
+     */
+    data: XOR<SponsorshipPlanUpdateManyMutationInput, SponsorshipPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which SponsorshipPlans to update
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * Limit how many SponsorshipPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SponsorshipPlan updateManyAndReturn
+   */
+  export type SponsorshipPlanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * The data used to update SponsorshipPlans.
+     */
+    data: XOR<SponsorshipPlanUpdateManyMutationInput, SponsorshipPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which SponsorshipPlans to update
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * Limit how many SponsorshipPlans to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SponsorshipPlan upsert
+   */
+  export type SponsorshipPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SponsorshipPlan to update in case it exists.
+     */
+    where: SponsorshipPlanWhereUniqueInput
+    /**
+     * In case the SponsorshipPlan found by the `where` argument doesn't exist, create a new SponsorshipPlan with this data.
+     */
+    create: XOR<SponsorshipPlanCreateInput, SponsorshipPlanUncheckedCreateInput>
+    /**
+     * In case the SponsorshipPlan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SponsorshipPlanUpdateInput, SponsorshipPlanUncheckedUpdateInput>
+  }
+
+  /**
+   * SponsorshipPlan delete
+   */
+  export type SponsorshipPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    /**
+     * Filter which SponsorshipPlan to delete.
+     */
+    where: SponsorshipPlanWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipPlan deleteMany
+   */
+  export type SponsorshipPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SponsorshipPlans to delete
+     */
+    where?: SponsorshipPlanWhereInput
+    /**
+     * Limit how many SponsorshipPlans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SponsorshipPlan.channel
+   */
+  export type SponsorshipPlan$channelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * SponsorshipPlan.sponsorshipSubscriptions
+   */
+  export type SponsorshipPlan$sponsorshipSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    where?: SponsorshipSubscriptionWhereInput
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipPlan without action
+   */
+  export type SponsorshipPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SponsorshipSubscription
+   */
+
+  export type AggregateSponsorshipSubscription = {
+    _count: SponsorshipSubscriptionCountAggregateOutputType | null
+    _min: SponsorshipSubscriptionMinAggregateOutputType | null
+    _max: SponsorshipSubscriptionMaxAggregateOutputType | null
+  }
+
+  export type SponsorshipSubscriptionMinAggregateOutputType = {
+    id: string | null
+    expiresAt: Date | null
+    planId: string | null
+    userId: string | null
+    channelId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SponsorshipSubscriptionMaxAggregateOutputType = {
+    id: string | null
+    expiresAt: Date | null
+    planId: string | null
+    userId: string | null
+    channelId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SponsorshipSubscriptionCountAggregateOutputType = {
+    id: number
+    expiresAt: number
+    planId: number
+    userId: number
+    channelId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SponsorshipSubscriptionMinAggregateInputType = {
+    id?: true
+    expiresAt?: true
+    planId?: true
+    userId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SponsorshipSubscriptionMaxAggregateInputType = {
+    id?: true
+    expiresAt?: true
+    planId?: true
+    userId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SponsorshipSubscriptionCountAggregateInputType = {
+    id?: true
+    expiresAt?: true
+    planId?: true
+    userId?: true
+    channelId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SponsorshipSubscriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SponsorshipSubscription to aggregate.
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipSubscriptions to fetch.
+     */
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SponsorshipSubscriptions
+    **/
+    _count?: true | SponsorshipSubscriptionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SponsorshipSubscriptionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SponsorshipSubscriptionMaxAggregateInputType
+  }
+
+  export type GetSponsorshipSubscriptionAggregateType<T extends SponsorshipSubscriptionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSponsorshipSubscription]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSponsorshipSubscription[P]>
+      : GetScalarType<T[P], AggregateSponsorshipSubscription[P]>
+  }
+
+
+
+
+  export type SponsorshipSubscriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SponsorshipSubscriptionWhereInput
+    orderBy?: SponsorshipSubscriptionOrderByWithAggregationInput | SponsorshipSubscriptionOrderByWithAggregationInput[]
+    by: SponsorshipSubscriptionScalarFieldEnum[] | SponsorshipSubscriptionScalarFieldEnum
+    having?: SponsorshipSubscriptionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SponsorshipSubscriptionCountAggregateInputType | true
+    _min?: SponsorshipSubscriptionMinAggregateInputType
+    _max?: SponsorshipSubscriptionMaxAggregateInputType
+  }
+
+  export type SponsorshipSubscriptionGroupByOutputType = {
+    id: string
+    expiresAt: Date
+    planId: string | null
+    userId: string | null
+    channelId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SponsorshipSubscriptionCountAggregateOutputType | null
+    _min: SponsorshipSubscriptionMinAggregateOutputType | null
+    _max: SponsorshipSubscriptionMaxAggregateOutputType | null
+  }
+
+  type GetSponsorshipSubscriptionGroupByPayload<T extends SponsorshipSubscriptionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SponsorshipSubscriptionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SponsorshipSubscriptionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SponsorshipSubscriptionGroupByOutputType[P]>
+            : GetScalarType<T[P], SponsorshipSubscriptionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SponsorshipSubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiresAt?: boolean
+    planId?: boolean
+    userId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipSubscription"]>
+
+  export type SponsorshipSubscriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiresAt?: boolean
+    planId?: boolean
+    userId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipSubscription"]>
+
+  export type SponsorshipSubscriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiresAt?: boolean
+    planId?: boolean
+    userId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }, ExtArgs["result"]["sponsorshipSubscription"]>
+
+  export type SponsorshipSubscriptionSelectScalar = {
+    id?: boolean
+    expiresAt?: boolean
+    planId?: boolean
+    userId?: boolean
+    channelId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SponsorshipSubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiresAt" | "planId" | "userId" | "channelId" | "createdAt" | "updatedAt", ExtArgs["result"]["sponsorshipSubscription"]>
+  export type SponsorshipSubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }
+  export type SponsorshipSubscriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }
+  export type SponsorshipSubscriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plan?: boolean | SponsorshipSubscription$planArgs<ExtArgs>
+    user?: boolean | SponsorshipSubscription$userArgs<ExtArgs>
+    channel?: boolean | SponsorshipSubscription$channelArgs<ExtArgs>
+  }
+
+  export type $SponsorshipSubscriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SponsorshipSubscription"
+    objects: {
+      plan: Prisma.$SponsorshipPlanPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
+      channel: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      expiresAt: Date
+      planId: string | null
+      userId: string | null
+      channelId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["sponsorshipSubscription"]>
+    composites: {}
+  }
+
+  type SponsorshipSubscriptionGetPayload<S extends boolean | null | undefined | SponsorshipSubscriptionDefaultArgs> = $Result.GetResult<Prisma.$SponsorshipSubscriptionPayload, S>
+
+  type SponsorshipSubscriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SponsorshipSubscriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SponsorshipSubscriptionCountAggregateInputType | true
+    }
+
+  export interface SponsorshipSubscriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SponsorshipSubscription'], meta: { name: 'SponsorshipSubscription' } }
+    /**
+     * Find zero or one SponsorshipSubscription that matches the filter.
+     * @param {SponsorshipSubscriptionFindUniqueArgs} args - Arguments to find a SponsorshipSubscription
+     * @example
+     * // Get one SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SponsorshipSubscriptionFindUniqueArgs>(args: SelectSubset<T, SponsorshipSubscriptionFindUniqueArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SponsorshipSubscription that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SponsorshipSubscriptionFindUniqueOrThrowArgs} args - Arguments to find a SponsorshipSubscription
+     * @example
+     * // Get one SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SponsorshipSubscriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, SponsorshipSubscriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SponsorshipSubscription that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionFindFirstArgs} args - Arguments to find a SponsorshipSubscription
+     * @example
+     * // Get one SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SponsorshipSubscriptionFindFirstArgs>(args?: SelectSubset<T, SponsorshipSubscriptionFindFirstArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SponsorshipSubscription that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionFindFirstOrThrowArgs} args - Arguments to find a SponsorshipSubscription
+     * @example
+     * // Get one SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SponsorshipSubscriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, SponsorshipSubscriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SponsorshipSubscriptions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SponsorshipSubscriptions
+     * const sponsorshipSubscriptions = await prisma.sponsorshipSubscription.findMany()
+     * 
+     * // Get first 10 SponsorshipSubscriptions
+     * const sponsorshipSubscriptions = await prisma.sponsorshipSubscription.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sponsorshipSubscriptionWithIdOnly = await prisma.sponsorshipSubscription.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SponsorshipSubscriptionFindManyArgs>(args?: SelectSubset<T, SponsorshipSubscriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SponsorshipSubscription.
+     * @param {SponsorshipSubscriptionCreateArgs} args - Arguments to create a SponsorshipSubscription.
+     * @example
+     * // Create one SponsorshipSubscription
+     * const SponsorshipSubscription = await prisma.sponsorshipSubscription.create({
+     *   data: {
+     *     // ... data to create a SponsorshipSubscription
+     *   }
+     * })
+     * 
+     */
+    create<T extends SponsorshipSubscriptionCreateArgs>(args: SelectSubset<T, SponsorshipSubscriptionCreateArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SponsorshipSubscriptions.
+     * @param {SponsorshipSubscriptionCreateManyArgs} args - Arguments to create many SponsorshipSubscriptions.
+     * @example
+     * // Create many SponsorshipSubscriptions
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SponsorshipSubscriptionCreateManyArgs>(args?: SelectSubset<T, SponsorshipSubscriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SponsorshipSubscriptions and returns the data saved in the database.
+     * @param {SponsorshipSubscriptionCreateManyAndReturnArgs} args - Arguments to create many SponsorshipSubscriptions.
+     * @example
+     * // Create many SponsorshipSubscriptions
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SponsorshipSubscriptions and only return the `id`
+     * const sponsorshipSubscriptionWithIdOnly = await prisma.sponsorshipSubscription.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SponsorshipSubscriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, SponsorshipSubscriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SponsorshipSubscription.
+     * @param {SponsorshipSubscriptionDeleteArgs} args - Arguments to delete one SponsorshipSubscription.
+     * @example
+     * // Delete one SponsorshipSubscription
+     * const SponsorshipSubscription = await prisma.sponsorshipSubscription.delete({
+     *   where: {
+     *     // ... filter to delete one SponsorshipSubscription
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SponsorshipSubscriptionDeleteArgs>(args: SelectSubset<T, SponsorshipSubscriptionDeleteArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SponsorshipSubscription.
+     * @param {SponsorshipSubscriptionUpdateArgs} args - Arguments to update one SponsorshipSubscription.
+     * @example
+     * // Update one SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SponsorshipSubscriptionUpdateArgs>(args: SelectSubset<T, SponsorshipSubscriptionUpdateArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SponsorshipSubscriptions.
+     * @param {SponsorshipSubscriptionDeleteManyArgs} args - Arguments to filter SponsorshipSubscriptions to delete.
+     * @example
+     * // Delete a few SponsorshipSubscriptions
+     * const { count } = await prisma.sponsorshipSubscription.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SponsorshipSubscriptionDeleteManyArgs>(args?: SelectSubset<T, SponsorshipSubscriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SponsorshipSubscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SponsorshipSubscriptions
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SponsorshipSubscriptionUpdateManyArgs>(args: SelectSubset<T, SponsorshipSubscriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SponsorshipSubscriptions and returns the data updated in the database.
+     * @param {SponsorshipSubscriptionUpdateManyAndReturnArgs} args - Arguments to update many SponsorshipSubscriptions.
+     * @example
+     * // Update many SponsorshipSubscriptions
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SponsorshipSubscriptions and only return the `id`
+     * const sponsorshipSubscriptionWithIdOnly = await prisma.sponsorshipSubscription.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SponsorshipSubscriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, SponsorshipSubscriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SponsorshipSubscription.
+     * @param {SponsorshipSubscriptionUpsertArgs} args - Arguments to update or create a SponsorshipSubscription.
+     * @example
+     * // Update or create a SponsorshipSubscription
+     * const sponsorshipSubscription = await prisma.sponsorshipSubscription.upsert({
+     *   create: {
+     *     // ... data to create a SponsorshipSubscription
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SponsorshipSubscription we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SponsorshipSubscriptionUpsertArgs>(args: SelectSubset<T, SponsorshipSubscriptionUpsertArgs<ExtArgs>>): Prisma__SponsorshipSubscriptionClient<$Result.GetResult<Prisma.$SponsorshipSubscriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SponsorshipSubscriptions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionCountArgs} args - Arguments to filter SponsorshipSubscriptions to count.
+     * @example
+     * // Count the number of SponsorshipSubscriptions
+     * const count = await prisma.sponsorshipSubscription.count({
+     *   where: {
+     *     // ... the filter for the SponsorshipSubscriptions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SponsorshipSubscriptionCountArgs>(
+      args?: Subset<T, SponsorshipSubscriptionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SponsorshipSubscriptionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SponsorshipSubscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SponsorshipSubscriptionAggregateArgs>(args: Subset<T, SponsorshipSubscriptionAggregateArgs>): Prisma.PrismaPromise<GetSponsorshipSubscriptionAggregateType<T>>
+
+    /**
+     * Group by SponsorshipSubscription.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SponsorshipSubscriptionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SponsorshipSubscriptionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SponsorshipSubscriptionGroupByArgs['orderBy'] }
+        : { orderBy?: SponsorshipSubscriptionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SponsorshipSubscriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSponsorshipSubscriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SponsorshipSubscription model
+   */
+  readonly fields: SponsorshipSubscriptionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SponsorshipSubscription.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SponsorshipSubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    plan<T extends SponsorshipSubscription$planArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipSubscription$planArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends SponsorshipSubscription$userArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipSubscription$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    channel<T extends SponsorshipSubscription$channelArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipSubscription$channelArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SponsorshipSubscription model
+   */ 
+  interface SponsorshipSubscriptionFieldRefs {
+    readonly id: FieldRef<"SponsorshipSubscription", 'String'>
+    readonly expiresAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
+    readonly planId: FieldRef<"SponsorshipSubscription", 'String'>
+    readonly userId: FieldRef<"SponsorshipSubscription", 'String'>
+    readonly channelId: FieldRef<"SponsorshipSubscription", 'String'>
+    readonly createdAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
+    readonly updatedAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SponsorshipSubscription findUnique
+   */
+  export type SponsorshipSubscriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipSubscription to fetch.
+     */
+    where: SponsorshipSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipSubscription findUniqueOrThrow
+   */
+  export type SponsorshipSubscriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipSubscription to fetch.
+     */
+    where: SponsorshipSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipSubscription findFirst
+   */
+  export type SponsorshipSubscriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipSubscription to fetch.
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipSubscriptions to fetch.
+     */
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SponsorshipSubscriptions.
+     */
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SponsorshipSubscriptions.
+     */
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipSubscription findFirstOrThrow
+   */
+  export type SponsorshipSubscriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipSubscription to fetch.
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipSubscriptions to fetch.
+     */
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SponsorshipSubscriptions.
+     */
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipSubscriptions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SponsorshipSubscriptions.
+     */
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipSubscription findMany
+   */
+  export type SponsorshipSubscriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter, which SponsorshipSubscriptions to fetch.
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SponsorshipSubscriptions to fetch.
+     */
+    orderBy?: SponsorshipSubscriptionOrderByWithRelationInput | SponsorshipSubscriptionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SponsorshipSubscriptions.
+     */
+    cursor?: SponsorshipSubscriptionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SponsorshipSubscriptions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SponsorshipSubscriptions.
+     */
+    skip?: number
+    distinct?: SponsorshipSubscriptionScalarFieldEnum | SponsorshipSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * SponsorshipSubscription create
+   */
+  export type SponsorshipSubscriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SponsorshipSubscription.
+     */
+    data: XOR<SponsorshipSubscriptionCreateInput, SponsorshipSubscriptionUncheckedCreateInput>
+  }
+
+  /**
+   * SponsorshipSubscription createMany
+   */
+  export type SponsorshipSubscriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SponsorshipSubscriptions.
+     */
+    data: SponsorshipSubscriptionCreateManyInput | SponsorshipSubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SponsorshipSubscription createManyAndReturn
+   */
+  export type SponsorshipSubscriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to create many SponsorshipSubscriptions.
+     */
+    data: SponsorshipSubscriptionCreateManyInput | SponsorshipSubscriptionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SponsorshipSubscription update
+   */
+  export type SponsorshipSubscriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SponsorshipSubscription.
+     */
+    data: XOR<SponsorshipSubscriptionUpdateInput, SponsorshipSubscriptionUncheckedUpdateInput>
+    /**
+     * Choose, which SponsorshipSubscription to update.
+     */
+    where: SponsorshipSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipSubscription updateMany
+   */
+  export type SponsorshipSubscriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SponsorshipSubscriptions.
+     */
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which SponsorshipSubscriptions to update
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * Limit how many SponsorshipSubscriptions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SponsorshipSubscription updateManyAndReturn
+   */
+  export type SponsorshipSubscriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * The data used to update SponsorshipSubscriptions.
+     */
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which SponsorshipSubscriptions to update
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * Limit how many SponsorshipSubscriptions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SponsorshipSubscription upsert
+   */
+  export type SponsorshipSubscriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SponsorshipSubscription to update in case it exists.
+     */
+    where: SponsorshipSubscriptionWhereUniqueInput
+    /**
+     * In case the SponsorshipSubscription found by the `where` argument doesn't exist, create a new SponsorshipSubscription with this data.
+     */
+    create: XOR<SponsorshipSubscriptionCreateInput, SponsorshipSubscriptionUncheckedCreateInput>
+    /**
+     * In case the SponsorshipSubscription was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SponsorshipSubscriptionUpdateInput, SponsorshipSubscriptionUncheckedUpdateInput>
+  }
+
+  /**
+   * SponsorshipSubscription delete
+   */
+  export type SponsorshipSubscriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+    /**
+     * Filter which SponsorshipSubscription to delete.
+     */
+    where: SponsorshipSubscriptionWhereUniqueInput
+  }
+
+  /**
+   * SponsorshipSubscription deleteMany
+   */
+  export type SponsorshipSubscriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SponsorshipSubscriptions to delete
+     */
+    where?: SponsorshipSubscriptionWhereInput
+    /**
+     * Limit how many SponsorshipSubscriptions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SponsorshipSubscription.plan
+   */
+  export type SponsorshipSubscription$planArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipPlan
+     */
+    select?: SponsorshipPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipPlan
+     */
+    omit?: SponsorshipPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipPlanInclude<ExtArgs> | null
+    where?: SponsorshipPlanWhereInput
+  }
+
+  /**
+   * SponsorshipSubscription.user
+   */
+  export type SponsorshipSubscription$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * SponsorshipSubscription.channel
+   */
+  export type SponsorshipSubscription$channelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * SponsorshipSubscription without action
+   */
+  export type SponsorshipSubscriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SponsorshipSubscription
+     */
+    select?: SponsorshipSubscriptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SponsorshipSubscription
+     */
+    omit?: SponsorshipSubscriptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SponsorshipSubscriptionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Token
    */
 
@@ -12203,6 +16169,48 @@ export namespace Prisma {
   export type NotificationSettingsScalarFieldEnum = (typeof NotificationSettingsScalarFieldEnum)[keyof typeof NotificationSettingsScalarFieldEnum]
 
 
+  export const TransactionScalarFieldEnum: {
+    id: 'id',
+    amount: 'amount',
+    currency: 'currency',
+    stripeSubscriptionId: 'stripeSubscriptionId',
+    status: 'status',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+  export const SponsorshipPlanScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    price: 'price',
+    stripeProductId: 'stripeProductId',
+    stripePlanId: 'stripePlanId',
+    channelId: 'channelId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SponsorshipPlanScalarFieldEnum = (typeof SponsorshipPlanScalarFieldEnum)[keyof typeof SponsorshipPlanScalarFieldEnum]
+
+
+  export const SponsorshipSubscriptionScalarFieldEnum: {
+    id: 'id',
+    expiresAt: 'expiresAt',
+    planId: 'planId',
+    userId: 'userId',
+    channelId: 'channelId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SponsorshipSubscriptionScalarFieldEnum = (typeof SponsorshipSubscriptionScalarFieldEnum)[keyof typeof SponsorshipSubscriptionScalarFieldEnum]
+
+
   export const TokenScalarFieldEnum: {
     id: 'id',
     token: 'token',
@@ -12309,20 +16317,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'TokenType'
-   */
-  export type EnumTokenTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TokenType'>
-    
-
-
-  /**
-   * Reference to a field of type 'TokenType[]'
-   */
-  export type ListEnumTokenTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TokenType[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12333,6 +16327,34 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionStatus'
+   */
+  export type EnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionStatus[]'
+   */
+  export type ListEnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TokenType'
+   */
+  export type EnumTokenTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TokenType'>
+    
+
+
+  /**
+   * Reference to a field of type 'TokenType[]'
+   */
+  export type ListEnumTokenTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TokenType[]'>
     
   /**
    * Deep Input Types
@@ -12367,6 +16389,10 @@ export namespace Prisma {
     notificationSettings?: XOR<NotificationSettingsNullableScalarRelationFilter, NotificationSettingsWhereInput> | null
     followers?: FollowListRelationFilter
     followings?: FollowListRelationFilter
+    transactions?: TransactionListRelationFilter
+    sponsorshipPlans?: SponsorshipPlanListRelationFilter
+    sponsorshipSubscriptions?: SponsorshipSubscriptionListRelationFilter
+    sponsors?: SponsorshipSubscriptionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12394,6 +16420,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsOrderByWithRelationInput
     followers?: FollowOrderByRelationAggregateInput
     followings?: FollowOrderByRelationAggregateInput
+    transactions?: TransactionOrderByRelationAggregateInput
+    sponsorshipPlans?: SponsorshipPlanOrderByRelationAggregateInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionOrderByRelationAggregateInput
+    sponsors?: SponsorshipSubscriptionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12424,6 +16454,10 @@ export namespace Prisma {
     notificationSettings?: XOR<NotificationSettingsNullableScalarRelationFilter, NotificationSettingsWhereInput> | null
     followers?: FollowListRelationFilter
     followings?: FollowListRelationFilter
+    transactions?: TransactionListRelationFilter
+    sponsorshipPlans?: SponsorshipPlanListRelationFilter
+    sponsorshipSubscriptions?: SponsorshipSubscriptionListRelationFilter
+    sponsors?: SponsorshipSubscriptionListRelationFilter
   }, "id" | "email" | "username" | "telegramId">
 
   export type UserOrderByWithAggregationInput = {
@@ -12955,6 +16989,229 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"NotificationSettings"> | Date | string
   }
 
+  export type TransactionWhereInput = {
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    id?: StringFilter<"Transaction"> | string
+    amount?: FloatFilter<"Transaction"> | number
+    currency?: StringFilter<"Transaction"> | string
+    stripeSubscriptionId?: StringNullableFilter<"Transaction"> | string | null
+    status?: EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+    userId?: StringNullableFilter<"Transaction"> | string | null
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type TransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    stripeSubscriptionId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    amount?: FloatFilter<"Transaction"> | number
+    currency?: StringFilter<"Transaction"> | string
+    stripeSubscriptionId?: StringNullableFilter<"Transaction"> | string | null
+    status?: EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+    userId?: StringNullableFilter<"Transaction"> | string | null
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type TransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    stripeSubscriptionId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TransactionCountOrderByAggregateInput
+    _avg?: TransactionAvgOrderByAggregateInput
+    _max?: TransactionMaxOrderByAggregateInput
+    _min?: TransactionMinOrderByAggregateInput
+    _sum?: TransactionSumOrderByAggregateInput
+  }
+
+  export type TransactionScalarWhereWithAggregatesInput = {
+    AND?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    OR?: TransactionScalarWhereWithAggregatesInput[]
+    NOT?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Transaction"> | string
+    amount?: FloatWithAggregatesFilter<"Transaction"> | number
+    currency?: StringWithAggregatesFilter<"Transaction"> | string
+    stripeSubscriptionId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    status?: EnumTransactionStatusWithAggregatesFilter<"Transaction"> | $Enums.TransactionStatus
+    userId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+  }
+
+  export type SponsorshipPlanWhereInput = {
+    AND?: SponsorshipPlanWhereInput | SponsorshipPlanWhereInput[]
+    OR?: SponsorshipPlanWhereInput[]
+    NOT?: SponsorshipPlanWhereInput | SponsorshipPlanWhereInput[]
+    id?: StringFilter<"SponsorshipPlan"> | string
+    title?: StringFilter<"SponsorshipPlan"> | string
+    description?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    price?: FloatFilter<"SponsorshipPlan"> | number
+    stripeProductId?: StringFilter<"SponsorshipPlan"> | string
+    stripePlanId?: StringFilter<"SponsorshipPlan"> | string
+    channelId?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+    channel?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    sponsorshipSubscriptions?: SponsorshipSubscriptionListRelationFilter
+  }
+
+  export type SponsorshipPlanOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    price?: SortOrder
+    stripeProductId?: SortOrder
+    stripePlanId?: SortOrder
+    channelId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    channel?: UserOrderByWithRelationInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionOrderByRelationAggregateInput
+  }
+
+  export type SponsorshipPlanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SponsorshipPlanWhereInput | SponsorshipPlanWhereInput[]
+    OR?: SponsorshipPlanWhereInput[]
+    NOT?: SponsorshipPlanWhereInput | SponsorshipPlanWhereInput[]
+    title?: StringFilter<"SponsorshipPlan"> | string
+    description?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    price?: FloatFilter<"SponsorshipPlan"> | number
+    stripeProductId?: StringFilter<"SponsorshipPlan"> | string
+    stripePlanId?: StringFilter<"SponsorshipPlan"> | string
+    channelId?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+    channel?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    sponsorshipSubscriptions?: SponsorshipSubscriptionListRelationFilter
+  }, "id">
+
+  export type SponsorshipPlanOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    price?: SortOrder
+    stripeProductId?: SortOrder
+    stripePlanId?: SortOrder
+    channelId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SponsorshipPlanCountOrderByAggregateInput
+    _avg?: SponsorshipPlanAvgOrderByAggregateInput
+    _max?: SponsorshipPlanMaxOrderByAggregateInput
+    _min?: SponsorshipPlanMinOrderByAggregateInput
+    _sum?: SponsorshipPlanSumOrderByAggregateInput
+  }
+
+  export type SponsorshipPlanScalarWhereWithAggregatesInput = {
+    AND?: SponsorshipPlanScalarWhereWithAggregatesInput | SponsorshipPlanScalarWhereWithAggregatesInput[]
+    OR?: SponsorshipPlanScalarWhereWithAggregatesInput[]
+    NOT?: SponsorshipPlanScalarWhereWithAggregatesInput | SponsorshipPlanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SponsorshipPlan"> | string
+    title?: StringWithAggregatesFilter<"SponsorshipPlan"> | string
+    description?: StringNullableWithAggregatesFilter<"SponsorshipPlan"> | string | null
+    price?: FloatWithAggregatesFilter<"SponsorshipPlan"> | number
+    stripeProductId?: StringWithAggregatesFilter<"SponsorshipPlan"> | string
+    stripePlanId?: StringWithAggregatesFilter<"SponsorshipPlan"> | string
+    channelId?: StringNullableWithAggregatesFilter<"SponsorshipPlan"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SponsorshipPlan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SponsorshipPlan"> | Date | string
+  }
+
+  export type SponsorshipSubscriptionWhereInput = {
+    AND?: SponsorshipSubscriptionWhereInput | SponsorshipSubscriptionWhereInput[]
+    OR?: SponsorshipSubscriptionWhereInput[]
+    NOT?: SponsorshipSubscriptionWhereInput | SponsorshipSubscriptionWhereInput[]
+    id?: StringFilter<"SponsorshipSubscription"> | string
+    expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    planId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    userId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    channelId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    plan?: XOR<SponsorshipPlanNullableScalarRelationFilter, SponsorshipPlanWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    channel?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type SponsorshipSubscriptionOrderByWithRelationInput = {
+    id?: SortOrder
+    expiresAt?: SortOrder
+    planId?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    channelId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    plan?: SponsorshipPlanOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    channel?: UserOrderByWithRelationInput
+  }
+
+  export type SponsorshipSubscriptionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SponsorshipSubscriptionWhereInput | SponsorshipSubscriptionWhereInput[]
+    OR?: SponsorshipSubscriptionWhereInput[]
+    NOT?: SponsorshipSubscriptionWhereInput | SponsorshipSubscriptionWhereInput[]
+    expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    planId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    userId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    channelId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    plan?: XOR<SponsorshipPlanNullableScalarRelationFilter, SponsorshipPlanWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    channel?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type SponsorshipSubscriptionOrderByWithAggregationInput = {
+    id?: SortOrder
+    expiresAt?: SortOrder
+    planId?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    channelId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SponsorshipSubscriptionCountOrderByAggregateInput
+    _max?: SponsorshipSubscriptionMaxOrderByAggregateInput
+    _min?: SponsorshipSubscriptionMinOrderByAggregateInput
+  }
+
+  export type SponsorshipSubscriptionScalarWhereWithAggregatesInput = {
+    AND?: SponsorshipSubscriptionScalarWhereWithAggregatesInput | SponsorshipSubscriptionScalarWhereWithAggregatesInput[]
+    OR?: SponsorshipSubscriptionScalarWhereWithAggregatesInput[]
+    NOT?: SponsorshipSubscriptionScalarWhereWithAggregatesInput | SponsorshipSubscriptionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
+    planId?: StringNullableWithAggregatesFilter<"SponsorshipSubscription"> | string | null
+    userId?: StringNullableWithAggregatesFilter<"SponsorshipSubscription"> | string | null
+    channelId?: StringNullableWithAggregatesFilter<"SponsorshipSubscription"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
+  }
+
   export type TokenWhereInput = {
     AND?: TokenWhereInput | TokenWhereInput[]
     OR?: TokenWhereInput[]
@@ -13045,6 +17302,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -13072,6 +17333,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserUpdateInput = {
@@ -13099,6 +17364,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13126,6 +17395,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13695,6 +17968,236 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type TransactionCreateInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    userId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateManyInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    userId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipPlanCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    channel?: UserCreateNestedOneWithoutSponsorshipPlansInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutPlanInput
+  }
+
+  export type SponsorshipPlanUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type SponsorshipPlanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    channel?: UserUpdateOneWithoutSponsorshipPlansNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutPlanNestedInput
+  }
+
+  export type SponsorshipPlanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type SponsorshipPlanCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipPlanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipPlanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateInput = {
+    id?: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    plan?: SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionsInput
+    user?: UserCreateNestedOneWithoutSponsorshipSubscriptionsInput
+    channel?: UserCreateNestedOneWithoutSponsorsInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    userId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plan?: SponsorshipPlanUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+    user?: UserUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+    channel?: UserUpdateOneWithoutSponsorsNestedInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateManyInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    userId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TokenCreateInput = {
     id?: string
     token: string
@@ -13861,6 +18364,24 @@ export namespace Prisma {
     none?: FollowWhereInput
   }
 
+  export type TransactionListRelationFilter = {
+    every?: TransactionWhereInput
+    some?: TransactionWhereInput
+    none?: TransactionWhereInput
+  }
+
+  export type SponsorshipPlanListRelationFilter = {
+    every?: SponsorshipPlanWhereInput
+    some?: SponsorshipPlanWhereInput
+    none?: SponsorshipPlanWhereInput
+  }
+
+  export type SponsorshipSubscriptionListRelationFilter = {
+    every?: SponsorshipSubscriptionWhereInput
+    some?: SponsorshipSubscriptionWhereInput
+    none?: SponsorshipSubscriptionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13883,6 +18404,18 @@ export namespace Prisma {
   }
 
   export type FollowOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SponsorshipPlanOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SponsorshipSubscriptionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14321,6 +18854,170 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type EnumTransactionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionStatus | EnumTransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionStatusFilter<$PrismaModel> | $Enums.TransactionStatus
+  }
+
+  export type TransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    status?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type TransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    status?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    stripeSubscriptionId?: SortOrder
+    status?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumTransactionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionStatus | EnumTransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionStatusWithAggregatesFilter<$PrismaModel> | $Enums.TransactionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionStatusFilter<$PrismaModel>
+    _max?: NestedEnumTransactionStatusFilter<$PrismaModel>
+  }
+
+  export type SponsorshipPlanCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    stripeProductId?: SortOrder
+    stripePlanId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SponsorshipPlanAvgOrderByAggregateInput = {
+    price?: SortOrder
+  }
+
+  export type SponsorshipPlanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    stripeProductId?: SortOrder
+    stripePlanId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SponsorshipPlanMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    stripeProductId?: SortOrder
+    stripePlanId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SponsorshipPlanSumOrderByAggregateInput = {
+    price?: SortOrder
+  }
+
+  export type SponsorshipPlanNullableScalarRelationFilter = {
+    is?: SponsorshipPlanWhereInput | null
+    isNot?: SponsorshipPlanWhereInput | null
+  }
+
+  export type SponsorshipSubscriptionCountOrderByAggregateInput = {
+    id?: SortOrder
+    expiresAt?: SortOrder
+    planId?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SponsorshipSubscriptionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    expiresAt?: SortOrder
+    planId?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SponsorshipSubscriptionMinOrderByAggregateInput = {
+    id?: SortOrder
+    expiresAt?: SortOrder
+    planId?: SortOrder
+    userId?: SortOrder
+    channelId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type EnumTokenTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.TokenType | EnumTokenTypeFieldRefInput<$PrismaModel>
     in?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
@@ -14422,6 +19119,34 @@ export namespace Prisma {
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
   }
 
+  export type TransactionCreateNestedManyWithoutUserInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type SponsorshipPlanCreateNestedManyWithoutChannelInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput> | SponsorshipPlanCreateWithoutChannelInput[] | SponsorshipPlanUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutChannelInput | SponsorshipPlanCreateOrConnectWithoutChannelInput[]
+    createMany?: SponsorshipPlanCreateManyChannelInputEnvelope
+    connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+  }
+
+  export type SponsorshipSubscriptionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
+    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+  }
+
+  export type SponsorshipSubscriptionCreateNestedManyWithoutChannelInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput> | SponsorshipSubscriptionCreateWithoutChannelInput[] | SponsorshipSubscriptionUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutChannelInput | SponsorshipSubscriptionCreateOrConnectWithoutChannelInput[]
+    createMany?: SponsorshipSubscriptionCreateManyChannelInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+  }
+
   export type TokenUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TokenCreateWithoutUserInput, TokenUncheckedCreateWithoutUserInput> | TokenCreateWithoutUserInput[] | TokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TokenCreateOrConnectWithoutUserInput | TokenCreateOrConnectWithoutUserInput[]
@@ -14474,6 +19199,34 @@ export namespace Prisma {
     connectOrCreate?: FollowCreateOrConnectWithoutFollowingInput | FollowCreateOrConnectWithoutFollowingInput[]
     createMany?: FollowCreateManyFollowingInputEnvelope
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput> | SponsorshipPlanCreateWithoutChannelInput[] | SponsorshipPlanUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutChannelInput | SponsorshipPlanCreateOrConnectWithoutChannelInput[]
+    createMany?: SponsorshipPlanCreateManyChannelInputEnvelope
+    connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
+    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput> | SponsorshipSubscriptionCreateWithoutChannelInput[] | SponsorshipSubscriptionUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutChannelInput | SponsorshipSubscriptionCreateOrConnectWithoutChannelInput[]
+    createMany?: SponsorshipSubscriptionCreateManyChannelInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -14600,6 +19353,62 @@ export namespace Prisma {
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
   }
 
+  export type TransactionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutUserInput | TransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutUserInput | TransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutUserInput | TransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type SponsorshipPlanUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput> | SponsorshipPlanCreateWithoutChannelInput[] | SponsorshipPlanUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutChannelInput | SponsorshipPlanCreateOrConnectWithoutChannelInput[]
+    upsert?: SponsorshipPlanUpsertWithWhereUniqueWithoutChannelInput | SponsorshipPlanUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: SponsorshipPlanCreateManyChannelInputEnvelope
+    set?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    disconnect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    delete?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    update?: SponsorshipPlanUpdateWithWhereUniqueWithoutChannelInput | SponsorshipPlanUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: SponsorshipPlanUpdateManyWithWhereWithoutChannelInput | SponsorshipPlanUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput> | SponsorshipSubscriptionCreateWithoutChannelInput[] | SponsorshipSubscriptionUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutChannelInput | SponsorshipSubscriptionCreateOrConnectWithoutChannelInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutChannelInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: SponsorshipSubscriptionCreateManyChannelInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutChannelInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutChannelInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+  }
+
   export type TokenUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TokenCreateWithoutUserInput, TokenUncheckedCreateWithoutUserInput> | TokenCreateWithoutUserInput[] | TokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TokenCreateOrConnectWithoutUserInput | TokenCreateOrConnectWithoutUserInput[]
@@ -14702,6 +19511,62 @@ export namespace Prisma {
     update?: FollowUpdateWithWhereUniqueWithoutFollowingInput | FollowUpdateWithWhereUniqueWithoutFollowingInput[]
     updateMany?: FollowUpdateManyWithWhereWithoutFollowingInput | FollowUpdateManyWithWhereWithoutFollowingInput[]
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutUserInput | TransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutUserInput | TransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutUserInput | TransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput> | SponsorshipPlanCreateWithoutChannelInput[] | SponsorshipPlanUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutChannelInput | SponsorshipPlanCreateOrConnectWithoutChannelInput[]
+    upsert?: SponsorshipPlanUpsertWithWhereUniqueWithoutChannelInput | SponsorshipPlanUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: SponsorshipPlanCreateManyChannelInputEnvelope
+    set?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    disconnect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    delete?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
+    update?: SponsorshipPlanUpdateWithWhereUniqueWithoutChannelInput | SponsorshipPlanUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: SponsorshipPlanUpdateManyWithWhereWithoutChannelInput | SponsorshipPlanUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput> | SponsorshipSubscriptionCreateWithoutChannelInput[] | SponsorshipSubscriptionUncheckedCreateWithoutChannelInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutChannelInput | SponsorshipSubscriptionCreateOrConnectWithoutChannelInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutChannelInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutChannelInput[]
+    createMany?: SponsorshipSubscriptionCreateManyChannelInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutChannelInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutChannelInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutChannelInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutChannelInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSocialLinksInput = {
@@ -14934,6 +19799,140 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationSettingsInput, UserUpdateWithoutNotificationSettingsInput>, UserUncheckedUpdateWithoutNotificationSettingsInput>
   }
 
+  export type UserCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumTransactionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.TransactionStatus
+  }
+
+  export type UserUpdateOneWithoutTransactionsNestedInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    upsert?: UserUpsertWithoutTransactionsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTransactionsInput, UserUpdateWithoutTransactionsInput>, UserUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutSponsorshipPlansInput = {
+    create?: XOR<UserCreateWithoutSponsorshipPlansInput, UserUncheckedCreateWithoutSponsorshipPlansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorshipPlansInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SponsorshipSubscriptionCreateNestedManyWithoutPlanInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput> | SponsorshipSubscriptionCreateWithoutPlanInput[] | SponsorshipSubscriptionUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutPlanInput | SponsorshipSubscriptionCreateOrConnectWithoutPlanInput[]
+    createMany?: SponsorshipSubscriptionCreateManyPlanInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateNestedManyWithoutPlanInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput> | SponsorshipSubscriptionCreateWithoutPlanInput[] | SponsorshipSubscriptionUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutPlanInput | SponsorshipSubscriptionCreateOrConnectWithoutPlanInput[]
+    createMany?: SponsorshipSubscriptionCreateManyPlanInputEnvelope
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneWithoutSponsorshipPlansNestedInput = {
+    create?: XOR<UserCreateWithoutSponsorshipPlansInput, UserUncheckedCreateWithoutSponsorshipPlansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorshipPlansInput
+    upsert?: UserUpsertWithoutSponsorshipPlansInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSponsorshipPlansInput, UserUpdateWithoutSponsorshipPlansInput>, UserUncheckedUpdateWithoutSponsorshipPlansInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput> | SponsorshipSubscriptionCreateWithoutPlanInput[] | SponsorshipSubscriptionUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutPlanInput | SponsorshipSubscriptionCreateOrConnectWithoutPlanInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutPlanInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: SponsorshipSubscriptionCreateManyPlanInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutPlanInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutPlanInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput> | SponsorshipSubscriptionCreateWithoutPlanInput[] | SponsorshipSubscriptionUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutPlanInput | SponsorshipSubscriptionCreateOrConnectWithoutPlanInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutPlanInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: SponsorshipSubscriptionCreateManyPlanInputEnvelope
+    set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutPlanInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutPlanInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+  }
+
+  export type SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionsInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutSponsorshipSubscriptionsInput
+    connect?: SponsorshipPlanWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutSponsorshipSubscriptionsInput = {
+    create?: XOR<UserCreateWithoutSponsorshipSubscriptionsInput, UserUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorshipSubscriptionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutSponsorsInput = {
+    create?: XOR<UserCreateWithoutSponsorsInput, UserUncheckedCreateWithoutSponsorsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type SponsorshipPlanUpdateOneWithoutSponsorshipSubscriptionsNestedInput = {
+    create?: XOR<SponsorshipPlanCreateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    connectOrCreate?: SponsorshipPlanCreateOrConnectWithoutSponsorshipSubscriptionsInput
+    upsert?: SponsorshipPlanUpsertWithoutSponsorshipSubscriptionsInput
+    disconnect?: SponsorshipPlanWhereInput | boolean
+    delete?: SponsorshipPlanWhereInput | boolean
+    connect?: SponsorshipPlanWhereUniqueInput
+    update?: XOR<XOR<SponsorshipPlanUpdateToOneWithWhereWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUpdateWithoutSponsorshipSubscriptionsInput>, SponsorshipPlanUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type UserUpdateOneWithoutSponsorshipSubscriptionsNestedInput = {
+    create?: XOR<UserCreateWithoutSponsorshipSubscriptionsInput, UserUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorshipSubscriptionsInput
+    upsert?: UserUpsertWithoutSponsorshipSubscriptionsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSponsorshipSubscriptionsInput, UserUpdateWithoutSponsorshipSubscriptionsInput>, UserUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type UserUpdateOneWithoutSponsorsNestedInput = {
+    create?: XOR<UserCreateWithoutSponsorsInput, UserUncheckedCreateWithoutSponsorsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSponsorsInput
+    upsert?: UserUpsertWithoutSponsorsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSponsorsInput, UserUpdateWithoutSponsorsInput>, UserUncheckedUpdateWithoutSponsorsInput>
+  }
+
   export type UserCreateNestedOneWithoutTokensInput = {
     create?: XOR<UserCreateWithoutTokensInput, UserUncheckedCreateWithoutTokensInput>
     connectOrCreate?: UserCreateOrConnectWithoutTokensInput
@@ -15143,6 +20142,39 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTransactionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionStatus | EnumTransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionStatusFilter<$PrismaModel> | $Enums.TransactionStatus
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTransactionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionStatus | EnumTransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionStatus[] | ListEnumTransactionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionStatusWithAggregatesFilter<$PrismaModel> | $Enums.TransactionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionStatusFilter<$PrismaModel>
+    _max?: NestedEnumTransactionStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumTokenTypeFilter<$PrismaModel = never> = {
@@ -15380,6 +20412,126 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TransactionCreateWithoutUserInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUncheckedCreateWithoutUserInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateOrConnectWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TransactionCreateManyUserInputEnvelope = {
+    data: TransactionCreateManyUserInput | TransactionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SponsorshipPlanCreateWithoutChannelInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutPlanInput
+  }
+
+  export type SponsorshipPlanUncheckedCreateWithoutChannelInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type SponsorshipPlanCreateOrConnectWithoutChannelInput = {
+    where: SponsorshipPlanWhereUniqueInput
+    create: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput>
+  }
+
+  export type SponsorshipPlanCreateManyChannelInputEnvelope = {
+    data: SponsorshipPlanCreateManyChannelInput | SponsorshipPlanCreateManyChannelInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SponsorshipSubscriptionCreateWithoutUserInput = {
+    id?: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    plan?: SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionsInput
+    channel?: UserCreateNestedOneWithoutSponsorsInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateWithoutUserInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateOrConnectWithoutUserInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    create: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SponsorshipSubscriptionCreateManyUserInputEnvelope = {
+    data: SponsorshipSubscriptionCreateManyUserInput | SponsorshipSubscriptionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SponsorshipSubscriptionCreateWithoutChannelInput = {
+    id?: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    plan?: SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionsInput
+    user?: UserCreateNestedOneWithoutSponsorshipSubscriptionsInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateWithoutChannelInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    userId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateOrConnectWithoutChannelInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    create: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput>
+  }
+
+  export type SponsorshipSubscriptionCreateManyChannelInputEnvelope = {
+    data: SponsorshipSubscriptionCreateManyChannelInput | SponsorshipSubscriptionCreateManyChannelInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TokenUpsertWithWhereUniqueWithoutUserInput = {
     where: TokenWhereUniqueInput
     update: XOR<TokenUpdateWithoutUserInput, TokenUncheckedUpdateWithoutUserInput>
@@ -15610,6 +20762,112 @@ export namespace Prisma {
     data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyWithoutFollowingInput>
   }
 
+  export type TransactionUpsertWithWhereUniqueWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutUserInput, TransactionUncheckedUpdateWithoutUserInput>
+    create: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutUserInput, TransactionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutUserInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TransactionScalarWhereInput = {
+    AND?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    OR?: TransactionScalarWhereInput[]
+    NOT?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    id?: StringFilter<"Transaction"> | string
+    amount?: FloatFilter<"Transaction"> | number
+    currency?: StringFilter<"Transaction"> | string
+    stripeSubscriptionId?: StringNullableFilter<"Transaction"> | string | null
+    status?: EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+    userId?: StringNullableFilter<"Transaction"> | string | null
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+  }
+
+  export type SponsorshipPlanUpsertWithWhereUniqueWithoutChannelInput = {
+    where: SponsorshipPlanWhereUniqueInput
+    update: XOR<SponsorshipPlanUpdateWithoutChannelInput, SponsorshipPlanUncheckedUpdateWithoutChannelInput>
+    create: XOR<SponsorshipPlanCreateWithoutChannelInput, SponsorshipPlanUncheckedCreateWithoutChannelInput>
+  }
+
+  export type SponsorshipPlanUpdateWithWhereUniqueWithoutChannelInput = {
+    where: SponsorshipPlanWhereUniqueInput
+    data: XOR<SponsorshipPlanUpdateWithoutChannelInput, SponsorshipPlanUncheckedUpdateWithoutChannelInput>
+  }
+
+  export type SponsorshipPlanUpdateManyWithWhereWithoutChannelInput = {
+    where: SponsorshipPlanScalarWhereInput
+    data: XOR<SponsorshipPlanUpdateManyMutationInput, SponsorshipPlanUncheckedUpdateManyWithoutChannelInput>
+  }
+
+  export type SponsorshipPlanScalarWhereInput = {
+    AND?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
+    OR?: SponsorshipPlanScalarWhereInput[]
+    NOT?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
+    id?: StringFilter<"SponsorshipPlan"> | string
+    title?: StringFilter<"SponsorshipPlan"> | string
+    description?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    price?: FloatFilter<"SponsorshipPlan"> | number
+    stripeProductId?: StringFilter<"SponsorshipPlan"> | string
+    stripePlanId?: StringFilter<"SponsorshipPlan"> | string
+    channelId?: StringNullableFilter<"SponsorshipPlan"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
+  }
+
+  export type SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    update: XOR<SponsorshipSubscriptionUpdateWithoutUserInput, SponsorshipSubscriptionUncheckedUpdateWithoutUserInput>
+    create: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    data: XOR<SponsorshipSubscriptionUpdateWithoutUserInput, SponsorshipSubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput = {
+    where: SponsorshipSubscriptionScalarWhereInput
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SponsorshipSubscriptionScalarWhereInput = {
+    AND?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+    OR?: SponsorshipSubscriptionScalarWhereInput[]
+    NOT?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
+    id?: StringFilter<"SponsorshipSubscription"> | string
+    expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    planId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    userId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    channelId?: StringNullableFilter<"SponsorshipSubscription"> | string | null
+    createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+    updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
+  }
+
+  export type SponsorshipSubscriptionUpsertWithWhereUniqueWithoutChannelInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    update: XOR<SponsorshipSubscriptionUpdateWithoutChannelInput, SponsorshipSubscriptionUncheckedUpdateWithoutChannelInput>
+    create: XOR<SponsorshipSubscriptionCreateWithoutChannelInput, SponsorshipSubscriptionUncheckedCreateWithoutChannelInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateWithWhereUniqueWithoutChannelInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    data: XOR<SponsorshipSubscriptionUpdateWithoutChannelInput, SponsorshipSubscriptionUncheckedUpdateWithoutChannelInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithWhereWithoutChannelInput = {
+    where: SponsorshipSubscriptionScalarWhereInput
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelInput>
+  }
+
   export type UserCreateWithoutSocialLinksInput = {
     id?: string
     email: string
@@ -15634,6 +20892,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutSocialLinksInput = {
@@ -15660,6 +20922,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutSocialLinksInput = {
@@ -15702,6 +20968,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSocialLinksInput = {
@@ -15728,6 +20998,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type ChatMessageCreateWithoutStreamInput = {
@@ -15780,6 +21054,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutStreamInput = {
@@ -15806,6 +21084,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutStreamInput = {
@@ -15889,6 +21171,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStreamInput = {
@@ -15915,6 +21201,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type CategoryUpsertWithoutStreamsInput = {
@@ -15972,6 +21262,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutChatMessagesInput = {
@@ -15998,6 +21292,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutChatMessagesInput = {
@@ -16079,6 +21377,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChatMessagesInput = {
@@ -16105,6 +21407,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type StreamUpsertWithoutChatMessagesInput = {
@@ -16256,6 +21562,10 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutFollowersInput = {
@@ -16282,6 +21592,10 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutFollowersInput = {
@@ -16313,6 +21627,10 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutFollowingsInput = {
@@ -16339,6 +21657,10 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutFollowingsInput = {
@@ -16381,6 +21703,10 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -16407,6 +21733,10 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUpsertWithoutFollowingsInput = {
@@ -16444,6 +21774,10 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowingsInput = {
@@ -16470,6 +21804,10 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -16496,6 +21834,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -16522,6 +21864,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -16564,6 +21910,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -16590,6 +21940,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type UserCreateWithoutNotificationSettingsInput = {
@@ -16616,6 +21970,10 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutNotificationSettingsInput = {
@@ -16642,6 +22000,10 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutNotificationSettingsInput = {
@@ -16684,6 +22046,10 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationSettingsInput = {
@@ -16710,6 +22076,662 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserCreateWithoutTransactionsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserCreateOrConnectWithoutTransactionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type UserUpsertWithoutTransactionsInput = {
+    update: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type UserUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserCreateWithoutSponsorshipPlansInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserUncheckedCreateWithoutSponsorshipPlansInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserCreateOrConnectWithoutSponsorshipPlansInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSponsorshipPlansInput, UserUncheckedCreateWithoutSponsorshipPlansInput>
+  }
+
+  export type SponsorshipSubscriptionCreateWithoutPlanInput = {
+    id?: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutSponsorshipSubscriptionsInput
+    channel?: UserCreateNestedOneWithoutSponsorsInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedCreateWithoutPlanInput = {
+    id?: string
+    expiresAt: Date | string
+    userId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateOrConnectWithoutPlanInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    create: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput>
+  }
+
+  export type SponsorshipSubscriptionCreateManyPlanInputEnvelope = {
+    data: SponsorshipSubscriptionCreateManyPlanInput | SponsorshipSubscriptionCreateManyPlanInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutSponsorshipPlansInput = {
+    update: XOR<UserUpdateWithoutSponsorshipPlansInput, UserUncheckedUpdateWithoutSponsorshipPlansInput>
+    create: XOR<UserCreateWithoutSponsorshipPlansInput, UserUncheckedCreateWithoutSponsorshipPlansInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSponsorshipPlansInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSponsorshipPlansInput, UserUncheckedUpdateWithoutSponsorshipPlansInput>
+  }
+
+  export type UserUpdateWithoutSponsorshipPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSponsorshipPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
+  }
+
+  export type SponsorshipSubscriptionUpsertWithWhereUniqueWithoutPlanInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    update: XOR<SponsorshipSubscriptionUpdateWithoutPlanInput, SponsorshipSubscriptionUncheckedUpdateWithoutPlanInput>
+    create: XOR<SponsorshipSubscriptionCreateWithoutPlanInput, SponsorshipSubscriptionUncheckedCreateWithoutPlanInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateWithWhereUniqueWithoutPlanInput = {
+    where: SponsorshipSubscriptionWhereUniqueInput
+    data: XOR<SponsorshipSubscriptionUpdateWithoutPlanInput, SponsorshipSubscriptionUncheckedUpdateWithoutPlanInput>
+  }
+
+  export type SponsorshipSubscriptionUpdateManyWithWhereWithoutPlanInput = {
+    where: SponsorshipSubscriptionScalarWhereInput
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanInput>
+  }
+
+  export type SponsorshipPlanCreateWithoutSponsorshipSubscriptionsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    channel?: UserCreateNestedOneWithoutSponsorshipPlansInput
+  }
+
+  export type SponsorshipPlanUncheckedCreateWithoutSponsorshipSubscriptionsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipPlanCreateOrConnectWithoutSponsorshipSubscriptionsInput = {
+    where: SponsorshipPlanWhereUniqueInput
+    create: XOR<SponsorshipPlanCreateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type UserCreateWithoutSponsorshipSubscriptionsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserUncheckedCreateWithoutSponsorshipSubscriptionsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
+  }
+
+  export type UserCreateOrConnectWithoutSponsorshipSubscriptionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSponsorshipSubscriptionsInput, UserUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type UserCreateWithoutSponsorsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSponsorsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerified?: boolean
+    isEmailVerified?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedOneWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSponsorsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSponsorsInput, UserUncheckedCreateWithoutSponsorsInput>
+  }
+
+  export type SponsorshipPlanUpsertWithoutSponsorshipSubscriptionsInput = {
+    update: XOR<SponsorshipPlanUpdateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+    create: XOR<SponsorshipPlanCreateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    where?: SponsorshipPlanWhereInput
+  }
+
+  export type SponsorshipPlanUpdateToOneWithWhereWithoutSponsorshipSubscriptionsInput = {
+    where?: SponsorshipPlanWhereInput
+    data: XOR<SponsorshipPlanUpdateWithoutSponsorshipSubscriptionsInput, SponsorshipPlanUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type SponsorshipPlanUpdateWithoutSponsorshipSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    channel?: UserUpdateOneWithoutSponsorshipPlansNestedInput
+  }
+
+  export type SponsorshipPlanUncheckedUpdateWithoutSponsorshipSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutSponsorshipSubscriptionsInput = {
+    update: XOR<UserUpdateWithoutSponsorshipSubscriptionsInput, UserUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+    create: XOR<UserCreateWithoutSponsorshipSubscriptionsInput, UserUncheckedCreateWithoutSponsorshipSubscriptionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSponsorshipSubscriptionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSponsorshipSubscriptionsInput, UserUncheckedUpdateWithoutSponsorshipSubscriptionsInput>
+  }
+
+  export type UserUpdateWithoutSponsorshipSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSponsorshipSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
+  }
+
+  export type UserUpsertWithoutSponsorsInput = {
+    update: XOR<UserUpdateWithoutSponsorsInput, UserUncheckedUpdateWithoutSponsorsInput>
+    create: XOR<UserCreateWithoutSponsorsInput, UserUncheckedCreateWithoutSponsorsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSponsorsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSponsorsInput, UserUncheckedUpdateWithoutSponsorsInput>
+  }
+
+  export type UserUpdateWithoutSponsorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSponsorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateOneWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTokensInput = {
@@ -16736,6 +22758,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
   export type UserUncheckedCreateWithoutTokensInput = {
@@ -16762,6 +22788,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
   export type UserCreateOrConnectWithoutTokensInput = {
@@ -16804,6 +22834,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTokensInput = {
@@ -16830,6 +22864,10 @@ export namespace Prisma {
     notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
   export type TokenCreateManyUserInput = {
@@ -16877,6 +22915,45 @@ export namespace Prisma {
   export type FollowCreateManyFollowingInput = {
     id?: string
     followerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateManyUserInput = {
+    id?: string
+    amount: number
+    currency: string
+    stripeSubscriptionId?: string | null
+    status?: $Enums.TransactionStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipPlanCreateManyChannelInput = {
+    id?: string
+    title: string
+    description?: string | null
+    price: number
+    stripeProductId: string
+    stripePlanId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateManyUserInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateManyChannelInput = {
+    id?: string
+    expiresAt: Date | string
+    planId?: string | null
+    userId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17028,6 +23105,125 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type TransactionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipPlanUpdateWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUpdateManyWithoutPlanNestedInput
+  }
+
+  export type SponsorshipPlanUncheckedUpdateWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sponsorshipSubscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type SponsorshipPlanUncheckedUpdateManyWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    stripeProductId?: StringFieldUpdateOperationsInput | string
+    stripePlanId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plan?: SponsorshipPlanUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+    channel?: UserUpdateOneWithoutSponsorsNestedInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUpdateWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plan?: SponsorshipPlanUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+    user?: UserUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ChatMessageCreateManyStreamInput = {
     id?: string
     text: string
@@ -17122,6 +23318,42 @@ export namespace Prisma {
     isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
     isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionCreateManyPlanInput = {
+    id?: string
+    expiresAt: Date | string
+    userId?: string | null
+    channelId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SponsorshipSubscriptionUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutSponsorshipSubscriptionsNestedInput
+    channel?: UserUpdateOneWithoutSponsorsNestedInput
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    channelId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
