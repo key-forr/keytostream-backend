@@ -40,7 +40,7 @@ export function VerifyChannelTemplate() {
 						<Text className="text-gray-600">
 							Якщо у вас є питання, напишіть нам на{' '}
 							<Link
-								href="mailto:help@teastream.ru"
+								href="mailto:help@keytostream.com"
 								className="text-[#18b9ae] underline"
 							>
 								help@teastream.ru

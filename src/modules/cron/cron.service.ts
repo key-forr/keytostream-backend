@@ -66,19 +66,16 @@ export class CronService {
 		}
 	}
 
-	//@Cron(CronExpression.EVERY_10_SECONDS)
+	@Cron('0 0 */4 * *')
 	public async notifyUsersEnableTwoFactor() {
 		const users = await this.prismaService.user.findMany({
 			where: {
-				id: '0c65e897-e2cb-4e45-8376-022e4af52083',
 				isTotpEnabled: false
 			},
 			include: {
 				notificationSettings: true
 			}
 		})
-
-		console.log('ENABLE TWO FACTOR OPERATION WORKING')
 
 		for (const user of users) {
 			await this.mailService.sendEnableTwoFactor(user.email)
@@ -94,5 +91,62 @@ export class CronService {
 				await this.telegramService.sendEnableTwoFactor(user.telegramId)
 			}
 		}
+	}
+
+	@Cron(CronExpression.EVERY_DAY_AT_1AM)
+	public async verifyChannels() {
+		const users = await this.prismaService.user.findMany({
+			include: {
+				notificationSettings: true
+			}
+		})
+
+		for (const user of users) {
+			const followersCount = await this.prismaService.follow.count({
+				where: {
+					followingId: user.id
+				}
+			})
+
+			if (followersCount > 10 && !user.isVerified) {
+				await this.prismaService.user.update({
+					where: {
+						id: user.id
+					},
+					data: {
+						isVerified: true
+					}
+				})
+
+				await this.mailService.sendVerifyChannel(user.email)
+
+				if (user.notificationSettings.siteNotifications) {
+					await this.notificationService.createVerifyChannel(user.id)
+				}
+
+				if (
+					user.notificationSettings.telegramNotifications &&
+					user.telegramId
+				) {
+					await this.telegramService.sendVerifyChannel(
+						user.telegramId
+					)
+				}
+			}
+		}
+	}
+
+	@Cron(CronExpression.EVERY_DAY_AT_1AM)
+	public async deleteOldNotifications() {
+		const sevenDaysAgo = new Date()
+		sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
+
+		await this.prismaService.notification.deleteMany({
+			where: {
+				createdAt: {
+					lte: sevenDaysAgo
+				}
+			}
+		})
 	}
 }
