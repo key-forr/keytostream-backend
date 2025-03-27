@@ -246,6 +246,7 @@ type Query {
   findRecommendedChannels: [UserModel!]!
   findSessionsByUser: [SessionModel!]!
   findSocialLinks: [SocialLinkModel!]!
+  findSponsorsByChannel(channelId: String!): [SubscriptionModel!]!
   generateTotpSecret: TotpModel!
 }
 
