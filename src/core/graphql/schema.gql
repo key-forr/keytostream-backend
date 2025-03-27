@@ -137,6 +137,10 @@ input LoginInput {
   pin: String
 }
 
+type MakePaymentModel {
+  url: String!
+}
+
 type Mutation {
   changeChatSettings(data: ChangeChatSettingsInput!): Boolean!
   changeEmail(data: ChangeEmailInput!): Boolean!
@@ -158,6 +162,7 @@ type Mutation {
   generateStreamToken(data: GenerateStreamTokenInput!): GenerateStreamTokenModel!
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
+  makePayment(planId: String!): MakePaymentModel!
   newPassword(data: NewPasswordInput!): Boolean!
   removeProfileAvatar: Boolean!
   removeSession(id: String!): Boolean!
@@ -231,6 +236,7 @@ type Query {
   findMyFollowers: [FollowModel!]!
   findMyFollowings: [FollowModel!]!
   findMySponsorshipPlans: [PlanModel!]!
+  findMyTransactions: [TransactionModel!]!
   findNotificationsByUser: [NotificationModel!]!
   findNotificationsUnreadCount: Float!
   findProfile: UserModel!
@@ -311,6 +317,25 @@ type Subscription {
 type TotpModel {
   qrcodeUrl: String!
   secret: String!
+}
+
+type TransactionModel {
+  amount: Float!
+  createdAt: DateTime!
+  currency: String!
+  id: ID!
+  status: TransactionStatus!
+  stripeSubscriptionId: String!
+  updatedAt: DateTime!
+  user: UserModel!
+  userId: String!
+}
+
+enum TransactionStatus {
+  EXPIRED
+  FAILED
+  PENDING
+  SUCCESS
 }
 
 """The `Upload` scalar type represents a file upload."""

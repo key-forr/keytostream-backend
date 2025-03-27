@@ -67,6 +67,13 @@ export class TransactionService {
 			email: user.email
 		})
 
+		const successUrl = `${this.configService.getOrThrow<string>(
+			'ALLOWED_ORIGIN'
+		)}/success?price=${encodeURIComponent(plan.title)}&
+			username=${encodeURIComponent(plan.channel.username)}`
+		const cancelUrl =
+			this.configService.getOrThrow<string>('ALLOWED_ORIGIN')
+
 		const session = await this.stripeService.checkout.sessions.create({
 			payment_method_types: ['card'],
 			line_items: [
@@ -74,8 +81,7 @@ export class TransactionService {
 					price_data: {
 						currency: 'uah',
 						product_data: {
-							name: plan.title,
-							description: plan.description ?? ''
+							name: plan.title
 						},
 						unit_amount: Math.round(plan.price * 100),
 						recurring: {
@@ -86,8 +92,8 @@ export class TransactionService {
 				}
 			],
 			mode: 'subscription',
-			success_url: `${this.configService.getOrThrow<string>('ALLOWED_ORIGIN')}/success?price=${plan.title}&username=${plan.channel.username}`,
-			cancel_url: this.configService.getOrThrow<string>('ALLOWED_ORIGIN'),
+			success_url: successUrl,
+			cancel_url: cancelUrl,
 			customer: customer.id,
 			metadata: {
 				planId: plan.id,
