@@ -85,7 +85,7 @@ export class NotificationService {
 		return notification
 	}
 
-	public async createNewSponsorShip(
+	public async createNewSponsorship(
 		userId: string,
 		plan: SponsorshipPlan,
 		sponsor: User
