@@ -1,4 +1,4 @@
-import type { User } from '@/prisma/generated'
+import type { SponsorshipPlan, User } from '@/prisma/generated'
 import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
 export const MESSAGES = {
@@ -57,6 +57,13 @@ export const MESSAGES = {
 		`<b>У вас новий підписник!</b>\n\n` +
 		`Це користувач <a href="https://keytostream.com/${follower.username}">${follower.displayName}</a>\n\n` +
 		`Загальна кількість підписників: ${followersCount}`,
+	newSponsorship: (plan: SponsorshipPlan, sponsor: User) =>
+		`<b>🎉 Нове спонсорство!</b>\n\n` +
+		`Ви отримали нове спонсорство на план <b>${plan.title}</b>.\n` +
+		`💰 Сума: <b>${plan.price} ₴</b>\n` +
+		`🧑‍💻 Спонсор: <a href="https://keytostream.com/${sponsor.username}">${sponsor.displayName}</a>\n` +
+		`📆 Дата оформлення: <b>${new Date().toLocaleDateString()} о ${new Date().toLocaleTimeString()}</b>\n\n` +
+		`Дякуємо вам за вашу роботу та підтримку на платформі keytostream!`,
 	enableTwoFactor:
 		`🔐 Захистіть свій акаунт!\n\n` +
 		`Увімкніть двофакторну автентифікацію в <a href="https://keytostream.com/dashboard/settings">налаштуваннях акаунта</a>.`,

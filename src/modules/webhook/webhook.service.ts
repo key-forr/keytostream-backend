@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import Stripe from 'stripe'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 
@@ -88,6 +89,16 @@ export class WebhookService {
 					streamId: stream.id
 				}
 			})
+		}
+	}
+
+	public async receiveWebhookStripe(event: Stripe.Event) {
+		const session = event.data.object as Stripe.Checkout.Session
+
+		if (event.type === 'checkout.session.completed') {
+			const planId = session.metadata.planId
+			const userId = session.metadata.userId
+			const channelId = session.metadata.channelId
 		}
 	}
 }
