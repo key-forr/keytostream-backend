@@ -57,7 +57,6 @@ import { RedisModule } from './redis/redis.module'
 			useFactory: getStripeConfig,
 			inject: [ConfigService]
 		}),
-
 		PrismaModule,
 		RedisModule,
 		MailModule,
