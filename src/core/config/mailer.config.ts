@@ -9,7 +9,7 @@ export function getMailerConfig(configService: ConfigService): MailerOptions {
 			secure: false,
 			auth: {
 				user: configService.getOrThrow<string>('MAIL_LOGIN'),
-				pass: configService.getOrThrow<number>('MAIL_PASSWORD')
+				pass: configService.getOrThrow<string>('MAIL_PASSWORD')
 			}
 		},
 		defaults: {

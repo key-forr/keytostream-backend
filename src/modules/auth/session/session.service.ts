@@ -2,7 +2,6 @@ import {
 	BadRequestException,
 	ConflictException,
 	Injectable,
-	InternalServerErrorException,
 	NotFoundException,
 	UnauthorizedException
 } from '@nestjs/common'
@@ -33,7 +32,7 @@ export class SessionService {
 		const userId = req.session.userId
 
 		if (!userId) {
-			throw new NotFoundException('Користувач не виявлений в сесії')
+			throw new NotFoundException('Користувач не найдений в сессії')
 		}
 
 		const keys = await this.redisService.keys('*')
@@ -87,28 +86,28 @@ export class SessionService {
 			}
 		})
 
-		if (!user) {
-			throw new NotFoundException('Користувач не найдений')
+		if (!user || user.isDeactivated) {
+			throw new NotFoundException('Користувача не знайдено')
 		}
 
 		const isValidPassword = await verify(user.password, password)
 
 		if (!isValidPassword) {
-			throw new UnauthorizedException('Не вірний пароль')
+			throw new UnauthorizedException('Невірний пароль')
 		}
 
 		if (!user.isEmailVerified) {
 			await this.verificationService.sendVerificationToken(user)
 
 			throw new BadRequestException(
-				'Аккаунт не верифіковано. Будь ласка, перевірьте свою пошту для підтвердження аккаунта'
+				'Аккаунт не верифікований. Буль ласка, провірьте свою почту для підтвердження'
 			)
 		}
 
 		if (user.isTotpEnabled) {
 			if (!pin) {
 				return {
-					message: 'Необхідний код для завершення авторизації'
+					message: 'Необхідно код для завершення авторизації'
 				}
 			}
 
@@ -123,7 +122,7 @@ export class SessionService {
 			const delta = totp.validate({ token: pin })
 
 			if (delta === null) {
-				throw new BadRequestException('Не вірний код')
+				throw new BadRequestException('Невірний код')
 			}
 		}
 
