@@ -15,7 +15,6 @@ export class StorageService {
 
 	public constructor(private readonly configService: ConfigService) {
 		this.client = new S3Client({
-			endpoint: this.configService.getOrThrow<string>('S3_ENDPOINT'),
 			region: this.configService.getOrThrow<string>('S3_REGION'),
 			credentials: {
 				accessKeyId:

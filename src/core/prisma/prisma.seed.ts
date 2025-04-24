@@ -63,7 +63,6 @@ async function main() {
 							password: await hash('12345678'),
 							username,
 							displayName: username,
-							avatar: `/channels/${username}.webp`,
 							isEmailVerified: true,
 							socialLinks: {
 								createMany: {

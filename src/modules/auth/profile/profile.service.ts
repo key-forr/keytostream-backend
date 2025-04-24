@@ -35,7 +35,7 @@ export class ProfileService {
 
 		const fileName = `/channels/${user.username}.webp`
 
-		if (file.filename && file.filename.endWith('.gif')) {
+		if (file.filename && file.filename.endsWith('.gif')) {
 			const processedBuffer = await sharp(buffer, { animated: true })
 				.resize(512, 512)
 				.webp()
