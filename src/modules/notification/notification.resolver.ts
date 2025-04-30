@@ -29,7 +29,7 @@ export class NotificationResolver {
 
 	@Authorization()
 	@Mutation(() => ChangeNotificationsSettingsResponse, {
-		name: 'changeNotificationSettings'
+		name: 'changeNotificationsSettings'
 	})
 	public async changeSettings(
 		@Authorized() user: User,
