@@ -69,7 +69,7 @@ export class TransactionService {
 
 		const successUrl = `${this.configService.getOrThrow<string>(
 			'ALLOWED_ORIGIN'
-		)}/success?price=${encodeURIComponent(plan.title)}&
+		)}/success?price=${encodeURIComponent(plan.price)}&
 			username=${encodeURIComponent(plan.channel.username)}`
 		const cancelUrl =
 			this.configService.getOrThrow<string>('ALLOWED_ORIGIN')
