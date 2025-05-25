@@ -285,7 +285,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Проекти\\keytostream\\keytostream-backend\\prisma\\generated",
+      "value": "D:\\Portfolio\\keytostream\\keytostream-backend\\prisma\\generated",
       "fromEnvVar": null
     },
     "config": {
@@ -299,7 +299,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Проекти\\keytostream\\keytostream-backend\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Portfolio\\keytostream\\keytostream-backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

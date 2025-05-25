@@ -60,7 +60,7 @@ export class StreamService {
 
 		const randomIndexes = new Set<number>()
 
-		while (randomIndexes.size < 4) {
+		while (randomIndexes.size < 8) {
 			const randomIndex = Math.floor(Math.random() * total)
 
 			randomIndexes.add(randomIndex)
