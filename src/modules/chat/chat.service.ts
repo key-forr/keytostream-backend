@@ -40,7 +40,7 @@ export class ChatService {
 		})
 
 		if (!stream) {
-			throw new NotFoundException('Стрім не знайдено')
+			throw new NotFoundException('Трансляцію не знайдено')
 		}
 
 		if (!stream.isLive) {
